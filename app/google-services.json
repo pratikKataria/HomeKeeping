@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "146920724064",
+    "firebase_url": "https://homekeeping-a998e.firebaseio.com",
+    "project_id": "homekeeping-a998e",
+    "storage_bucket": "homekeeping-a998e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146920724064:android:55d74039b0cd092bbd1505",
+        "android_client_info": {
+          "package_name": "com.tricky_tweaks.homekeeping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146920724064-2tls85dav81hhqn8qh0doteik5grvn1d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tricky_tweaks.homekeeping",
+            "certificate_hash": "535fc0eaa9f67f7d6f3bd93f8c02966af3c41e3c"
+          }
+        },
+        {
+          "client_id": "146920724064-rcit9fi2mk3v1kqipac0midngobpq99j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCE3R7zVbY7MPGY4sTRSz-MPtozamK3ZUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "146920724064-rcit9fi2mk3v1kqipac0midngobpq99j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
