@@ -8,54 +8,57 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firestore.v1.StructuredQuery;
 import com.tricky_tweaks.homekeeping.R;
 import com.tricky_tweaks.homekeeping.main.bottom_navigation_fragment.HomeFragment;
 import com.tricky_tweaks.homekeeping.main.bottom_navigation_fragment.OrdersFragment;
 import com.tricky_tweaks.homekeeping.main.bottom_navigation_fragment.ProfileFragment;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private HomeFragment homeFragment;
-    private OrdersFragment ordersFragment;
-    private ProfileFragment profileFragment;
+    AppBarConfiguration appBarConfiguration;
+
+    NavController navController;
+    BottomNavigationView bnv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        homeFragment = new HomeFragment();
-        loadFragment(homeFragment);
+        bnv = findViewById(R.id.bottomBar);
 
-        final SmoothBottomBar smoothBottomBar = findViewById(R.id.bottomBar);
-        smoothBottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelect(int i) {
-                switch (i) {
-                    case 0:
-                        loadFragment(homeFragment);
-                        break;
-                    case 1:
-                        ordersFragment = new OrdersFragment();
-                        loadFragment(ordersFragment);
-                        break;
-                    case 2:
-                        profileFragment = new ProfileFragment();
-                        loadFragment(profileFragment);
-                        break;
-                }
-            }
-        });
+        setUpBottomNavigationView();
     }
 
-    private void loadFragment(Fragment frag) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction().replace(R.id.activity_main_frame_layout, frag);
-        transaction.commit();
+    private void setUpBottomNavigationView() {
+
+        NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.activity_main_nav_host);
+        if (navHostFragment != null) {
+            navController = navHostFragment.getNavController();
+            NavigationUI.setupWithNavController(bnv, navHostFragment.getNavController());
+
+//            Set<Integer> topLevelDestinations = new HashSet<>();
+//            topLevelDestinations.add(R.id.bottom_nav_home);
+//            topLevelDestinations.add(R.id.bottom_nav_orders);
+//            topLevelDestinations.add(R.id.bottom_nav_profile);
+//            appBarConfiguration = new AppBarConfiguration.Builder(topLevelDestinations).build();
+//            NavigationUI.setupActionBarWithNavController(this, this.navController, this.appBarConfiguration);
+        }
+
+
     }
+
 }

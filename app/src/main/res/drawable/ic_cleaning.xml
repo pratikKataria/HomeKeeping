@@ -53,5 +53,5 @@
       android:fillColor="#8d6c9f"/>
   <path
       android:pathData="M47,46a1,1 0,0 0,-1 1v4a1,1 0,0 0,2 0V47A1,1 0,0 0,47 46Z"
-      android:fillColor="#8d6c9f"/>
+      android:fillColor="@color/colorAccent"/>
 </vector>

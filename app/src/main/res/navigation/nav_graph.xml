@@ -3,48 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.tricky_tweaks.homekeeping.main.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_mainFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_ordersFragment"
-            app:destination="@id/ordersFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-    </fragment>
+    app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.tricky_tweaks.homekeeping.main.bottom_navigation_fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_ACServiceAndRepairFragment"
-            app:destination="@id/ACServiceAndRepairFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_cleaningFragment"
-            app:destination="@id/cleaningFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_applianceRepairFragment"
-            app:destination="@id/applianceRepairFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_carpenterFragment"
-            app:destination="@id/carpenterFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_plumberFragment"
-            app:destination="@id/plumberFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_electricianFragment"
-            app:destination="@id/electricianFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_pestControlFragment"
-            app:destination="@id/pestControlFragment" />
+        tools:layout="@layout/fragment_home">
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
