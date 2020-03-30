@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.database.*
-import com.tricky_tweaks.homekeeping.MainActivity
+import com.tricky_tweaks.homekeeping.main.MainActivity
 import com.tricky_tweaks.homekeeping.R
 import kotlinx.android.synthetic.main.activity_otp.*
 

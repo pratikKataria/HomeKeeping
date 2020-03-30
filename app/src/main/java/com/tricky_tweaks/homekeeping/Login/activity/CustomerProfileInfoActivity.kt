@@ -6,11 +6,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.iid.FirebaseInstanceId
-import com.tricky_tweaks.homekeeping.MainActivity
+import com.tricky_tweaks.homekeeping.main.MainActivity
 import com.tricky_tweaks.homekeeping.R
 import com.tricky_tweaks.homekeeping.model.CustomerData
 import kotlinx.android.synthetic.main.activity_customer_profile_info.*

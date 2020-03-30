@@ -13,9 +13,9 @@ import com.tricky_tweaks.homekeeping.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ACServiceAndRepair extends Fragment {
+public class CarpenterFragment extends Fragment {
 
-    public ACServiceAndRepair() {
+    public CarpenterFragment() {
         // Required empty public constructor
     }
 
@@ -24,6 +24,6 @@ public class ACServiceAndRepair extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_a_c_service_and_repair, container, false);
+        return inflater.inflate(R.layout.fragment_carpenter, container, false);
     }
 }

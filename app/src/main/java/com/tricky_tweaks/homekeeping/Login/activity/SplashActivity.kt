@@ -13,7 +13,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.tricky_tweaks.homekeeping.MainActivity
+import com.tricky_tweaks.homekeeping.main.MainActivity
 import com.tricky_tweaks.homekeeping.R
 
 class SplashActivity : AppCompatActivity() {

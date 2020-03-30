@@ -23,6 +23,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 
 }
 
@@ -50,6 +54,9 @@ dependencies {
     implementation 'com.ismaeldivita.chipnavigation:chip-navigation-bar:1.2.0'
 
     implementation 'com.synnapps:carouselview:0.1.4'
+
+    implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7'
+
 
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
