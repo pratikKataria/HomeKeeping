@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".login.activity.SplashActivity">
+
+    <ImageView
+        android:id="@+id/transition_ic_logo"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="55dp"
+        android:layout_gravity="center"
+        android:transitionName="logoTrans"
+        android:src="@drawable/hk_splash_screen_logo"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:transitionName="llTrans">
+        <TextView
+            android:id="@+id/transition_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:text="Home "
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/transition_app_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:text="keeping"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/transition_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your House Keeping Service"
+        android:layout_marginTop="8dp"
+        android:transitionName="descTrans"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="easy \t\u2022 affordable \u2022 \thome service" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="8dp"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="hk_splash_anim.json"
+        app:lottie_loop="true"
+        android:layout_gravity="center" />
+
+</LinearLayout>
