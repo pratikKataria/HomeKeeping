@@ -28,12 +28,25 @@ class CustomerProfileInfoActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            if (first_name.text.isEmpty()) {
+                first_name.error = "should not be empty"
+                first_name.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (last_name.text.isEmpty()) {
+                last_name.error = "should not be empty"
+                last_name.requestFocus()
+                return@setOnClickListener
+            }
+
             var customerData = CustomerData(
                 FirebaseAuth.getInstance().uid!!, FirebaseAuth.getInstance().currentUser!!.phoneNumber,
-                location.text.toString(), FirebaseInstanceId.getInstance().getToken()!!
+                location.text.toString(), FirebaseInstanceId.getInstance().getToken()!!,
+                first_name.text.toString().plus(last_name.text.toString())
             );
 
-            val documentReference = FirebaseDatabase.getInstance().getReference("Customers")
+            val documentReference = FirebaseDatabase.getInstance().getReference("Users")
             documentReference.child(FirebaseAuth.getInstance().uid!!).setValue(customerData)
                 .addOnCompleteListener { task: Task<Void?> ->
                     if (task.isSuccessful) {

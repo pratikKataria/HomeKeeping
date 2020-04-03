@@ -58,6 +58,8 @@ dependencies {
 
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7'
 
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+
     def nav_version = "2.3.0-alpha04"
 
     // Java language implementation

@@ -1,263 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:layout_collapseMode="parallax"
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/service_cleaning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:clickable="true"
-            android:layout_margin="4dp"
-            app:cardElevation="0dp"
             android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_margin="4dp"
-                    android:src="@drawable/ic_cleaning"
-                    android:layout_gravity="center"/>
+                    android:id="@+id/rv_iv_item_image"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_cleaning" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/rv_tv_item_name"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_margin="4dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
                     android:text="Cleaning" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/service_electricians"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            app:cardElevation="0dp"
+            android:layout_margin="2dp"
 
+            android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_margin="4dp"
-                    android:src="@drawable/ic_cleaning"
-                    android:layout_gravity="center"/>
+                    android:id="@+id/user_option_Orders"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_electronic" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_margin="4dp"
-                    android:text="Cleaning" />
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="Electricians" />
             </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/service_pest_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:clickable="true"
+
+            android:foreground="?attr/selectableItemBackground"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_pest" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="Pest Control" />
+            </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/service_plumbers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:clickable="true"
-            app:cardElevation="0dp"
 
             android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_margin="4dp"
-                    android:src="@drawable/ic_cleaning"
-                    android:layout_gravity="center"/>
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_plumber" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_margin="4dp"
-                    android:text="Cleaning" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:layout_margin="4dp"
-            app:cardElevation="0dp"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="8dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_margin="4dp"
-                    android:src="@drawable/ic_cleaning"
-                    android:layout_gravity="center"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_margin="4dp"
-                    android:text="Cleaning" />
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:textColor="@color/colorBlack"
+                    android:text="Plumbers" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/service_carpenters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:clickable="true"
-            android:layout_margin="4dp"
-            app:cardElevation="0dp"
+
             android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_margin="4dp"
-                    android:src="@drawable/ic_cleaning"
-                    android:layout_gravity="center"/>
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_hacksaw" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_margin="4dp"
-                    android:text="Cleaning" />
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:paddingStart="8dp"
+                    android:singleLine="true"
+                    android:text="Carpenters" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/service_appliance_repair"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:clickable="true"
-            app:cardElevation="0dp"
-
             android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_margin="4dp"
-                    android:src="@drawable/ic_cleaning"
-                    android:layout_gravity="center"/>
+                    android:layout_width="54dp"
+                    android:layout_height="50dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_repair" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_margin="4dp"
-                    android:text="Cleaning" />
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="Applicance Repair" />
             </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/service_ac_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:clickable="true"
-            app:cardElevation="0dp"
-
             android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_margin="4dp"
-                    android:src="@drawable/ic_cleaning"
-                    android:layout_gravity="center"/>
+                    android:layout_width="54dp"
+                    android:layout_height="50dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_air_conditioner" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_margin="4dp"
-                    android:text="Cleaning" />
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="Ac Service and Repair" />
             </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:layout_margin="4dp"
-            app:cardElevation="0dp"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="8dp">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_margin="4dp"
-                    android:src="@drawable/ic_cleaning"
-                    android:layout_gravity="center"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_margin="4dp"
-                    android:text="Cleaning" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 

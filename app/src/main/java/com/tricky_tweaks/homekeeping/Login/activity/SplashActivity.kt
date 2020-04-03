@@ -31,6 +31,7 @@ class SplashActivity : AppCompatActivity() {
         linearLayout = findViewById(R.id.linearLayout)
         textView = findViewById(R.id.transition_text)
 
+//        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
 
 
         Handler().postDelayed({
@@ -39,14 +40,14 @@ class SplashActivity : AppCompatActivity() {
             } else {
                 sendUserToLogin()
             }
-        }, 2000)
+        }, 1000)
 
     }
 
     private fun checkUserData() {
         Log.e("OTp activity ", "checkUserData ")
         val ref: DatabaseReference = FirebaseDatabase.getInstance()
-            .getReference("Customers/" + FirebaseAuth.getInstance().uid)
+            .getReference("Users/" + FirebaseAuth.getInstance().uid)
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {

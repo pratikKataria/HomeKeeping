@@ -9,52 +9,48 @@
         android:name="com.tricky_tweaks.homekeeping.main.bottom_navigation_fragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_vendorFragment"
+            app:destination="@id/vendorFragment" />
     </fragment>
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.tricky_tweaks.homekeeping.main.bottom_navigation_fragment.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        android:id="@+id/vendorFragment"
+        android:name="com.tricky_tweaks.homekeeping.VendorFragment"
+        android:label="fragment_vendor"
+        tools:layout="@layout/fragment_vendor" >
+        <action
+            android:id="@+id/action_vendorFragment_to_identityProofFragment"
+            app:destination="@id/identityProofFragment" />
+        <action
+            android:id="@+id/action_vendorFragment_to_personalDetailFragment"
+            app:destination="@id/personalDetailFragment" />
+        <action
+            android:id="@+id/action_vendorFragment_to_currentAddressFragment"
+            app:destination="@id/currentAddressFragment" />
+        <action
+            android:id="@+id/action_vendorFragment_to_bankDetailFragment"
+            app:destination="@id/bankDetailFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/ordersFragment"
-        android:name="com.tricky_tweaks.homekeeping.main.bottom_navigation_fragment.OrdersFragment"
-        android:label="fragment_orders"
-        tools:layout="@layout/fragment_orders" />
+        android:id="@+id/identityProofFragment"
+        android:name="com.tricky_tweaks.homekeeping.IdentityProofFragment"
+        android:label="fragment_identity_proof"
+        tools:layout="@layout/fragment_identity_proof" />
     <fragment
-        android:id="@+id/ACServiceAndRepairFragment"
-        android:name="com.tricky_tweaks.homekeeping.main.customer_servces.ACServiceAndRepairFragment"
-        android:label="fragment_ac_service_and_repair"
-        tools:layout="@layout/fragment_ac_service_and_repair" />
+        android:id="@+id/personalDetailFragment"
+        android:name="com.tricky_tweaks.homekeeping.PersonalDetailFragment"
+        android:label="fragment_personal_detail"
+        tools:layout="@layout/fragment_personal_detail" />
     <fragment
-        android:id="@+id/cleaningFragment"
-        android:name="com.tricky_tweaks.homekeeping.main.customer_servces.CleaningFragment"
-        android:label="fragment_cleaning"
-        tools:layout="@layout/fragment_cleaning" />
+        android:id="@+id/currentAddressFragment"
+        android:name="com.tricky_tweaks.homekeeping.CurrentAddressFragment"
+        android:label="fragment_current_address"
+        tools:layout="@layout/fragment_current_address" />
     <fragment
-        android:id="@+id/carpenterFragment"
-        android:name="com.tricky_tweaks.homekeeping.main.customer_servces.CarpenterFragment"
-        android:label="fragment_carpenter"
-        tools:layout="@layout/fragment_carpenter" />
-    <fragment
-        android:id="@+id/electricianFragment"
-        android:name="com.tricky_tweaks.homekeeping.main.customer_servces.ElectricianFragment"
-        android:label="fragment_electrician"
-        tools:layout="@layout/fragment_electrician" />
-    <fragment
-        android:id="@+id/plumberFragment"
-        android:name="com.tricky_tweaks.homekeeping.main.customer_servces.PlumberFragment"
-        android:label="fragment_plumber"
-        tools:layout="@layout/fragment_plumber" />
-    <fragment
-        android:id="@+id/pestControlFragment"
-        android:name="com.tricky_tweaks.homekeeping.main.customer_servces.PestControlFragment"
-        android:label="fragment_pest_control"
-        tools:layout="@layout/fragment_pest_control" />
-    <fragment
-        android:id="@+id/applianceRepairFragment"
-        android:name="com.tricky_tweaks.homekeeping.main.customer_servces.ApplianceRepairFragment"
-        android:label="fragment_appliance_repair"
-        tools:layout="@layout/fragment_appliance_repair" />
+        android:id="@+id/bankDetailFragment"
+        android:name="com.tricky_tweaks.homekeeping.BankDetailFragment"
+        android:label="fragment_bank_detail"
+        tools:layout="@layout/fragment_bank_detail" />
 
 
 </navigation>
