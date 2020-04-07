@@ -60,6 +60,8 @@ dependencies {
 
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
 
+    implementation 'id.zelory:compressor:2.1.0'
+
     def nav_version = "2.3.0-alpha04"
 
     // Java language implementation

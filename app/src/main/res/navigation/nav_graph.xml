@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/vendorFragment"
-        android:name="com.tricky_tweaks.homekeeping.VendorFragment"
+        android:name="com.tricky_tweaks.homekeeping.main.VendorFragment"
         android:label="fragment_vendor"
         tools:layout="@layout/fragment_vendor" >
         <action
@@ -33,24 +33,40 @@
     </fragment>
     <fragment
         android:id="@+id/identityProofFragment"
-        android:name="com.tricky_tweaks.homekeeping.IdentityProofFragment"
+        android:name="com.tricky_tweaks.homekeeping.main.vendor_details_fragment.IdentityProofFragment"
         android:label="fragment_identity_proof"
-        tools:layout="@layout/fragment_identity_proof" />
+        tools:layout="@layout/fragment_identity_proof" >
+        <action
+            android:id="@+id/action_identityProofFragment_to_vendorFragment"
+            app:destination="@id/vendorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/personalDetailFragment"
-        android:name="com.tricky_tweaks.homekeeping.PersonalDetailFragment"
+        android:name="com.tricky_tweaks.homekeeping.main.vendor_details_fragment.PersonalDetailFragment"
         android:label="fragment_personal_detail"
-        tools:layout="@layout/fragment_personal_detail" />
+        tools:layout="@layout/fragment_personal_detail" >
+        <action
+            android:id="@+id/action_personalDetailFragment_to_vendorFragment"
+            app:destination="@id/vendorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/currentAddressFragment"
-        android:name="com.tricky_tweaks.homekeeping.CurrentAddressFragment"
+        android:name="com.tricky_tweaks.homekeeping.main.vendor_details_fragment.CurrentAddressFragment"
         android:label="fragment_current_address"
-        tools:layout="@layout/fragment_current_address" />
+        tools:layout="@layout/fragment_current_address" >
+        <action
+            android:id="@+id/action_currentAddressFragment_to_vendorFragment"
+            app:destination="@id/vendorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/bankDetailFragment"
-        android:name="com.tricky_tweaks.homekeeping.BankDetailFragment"
+        android:name="com.tricky_tweaks.homekeeping.main.vendor_details_fragment.BankDetailFragment"
         android:label="fragment_bank_detail"
-        tools:layout="@layout/fragment_bank_detail" />
+        tools:layout="@layout/fragment_bank_detail" >
+        <action
+            android:id="@+id/action_bankDetailFragment_to_vendorFragment"
+            app:destination="@id/vendorFragment" />
+    </fragment>
 
 
 </navigation>

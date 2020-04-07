@@ -1,4 +1,4 @@
-package com.tricky_tweaks.homekeeping;
+package com.tricky_tweaks.homekeeping.main;
 
 import android.os.Bundle;
 
@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.button.MaterialButton;
+import com.tricky_tweaks.homekeeping.R;
 
 public class VendorFragment extends Fragment {
 
@@ -58,4 +59,6 @@ public class VendorFragment extends Fragment {
 
         return view;
     }
+
+
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".IdentityProofFragment">
+    tools:context=".main.vendor_details_fragment.IdentityProofFragment">
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:src="@drawable/ic_camera"
-                android:scaleType="center"/>
+                android:scaleType="fitCenter"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
                 android:id="@+id/id_iv_adhar_back"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:scaleType="center"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_camera" />
 
             <TextView
@@ -77,9 +77,18 @@
         android:id="@+id/id_iv_pan"
         android:layout_width="206dp"
         android:layout_height="150dp"
-        android:scaleType="center"
         android:layout_marginTop="8dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/ic_camera" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:indeterminate="true"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:indeterminateTint="@color/colorBlack"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/id_mb_verify"
