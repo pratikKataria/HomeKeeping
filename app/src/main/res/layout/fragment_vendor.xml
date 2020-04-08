@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".main.VendorFragment"
     android:gravity="bottom"
     android:orientation="vertical">
@@ -14,6 +15,7 @@
         android:layout_marginTop="50dp"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_gravity="center"
+        app:strokeColor="@color/green"
         android:text="Submit Id proof"/>
 
     <com.google.android.material.button.MaterialButton

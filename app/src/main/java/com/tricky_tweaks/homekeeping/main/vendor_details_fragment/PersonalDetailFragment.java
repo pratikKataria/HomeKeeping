@@ -1,66 +1,164 @@
 package com.tricky_tweaks.homekeeping.main.vendor_details_fragment;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
+import android.widget.DatePicker;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.tricky_tweaks.homekeeping.R;
+import com.tricky_tweaks.homekeeping.model.PersonalDetailModel;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PersonalDetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class PersonalDetailFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private TextInputEditText _textViewName;
+    private TextInputEditText _textViewAadhaarNo;
+    private TextInputEditText _textViewPancardNo;
+    private TextInputEditText _textViewDob;
+    private TextInputEditText _textViewParentName;
 
-    public PersonalDetailFragment() {
-        // Required empty public constructor
-    }
+    private RadioGroup _radioGroup;
+    private RadioButton _radioButtonMale;
+    private RadioButton _radioButtonFemale;
+    private RadioButton _radioButtonOther;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PersonalDetailFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PersonalDetailFragment newInstance(String param1, String param2) {
-        PersonalDetailFragment fragment = new PersonalDetailFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private MaterialButton _saveBtn;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private String gender = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_personal_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_personal_detail, container, false);
+
+        _textViewName = view.findViewById(R.id.pd_name);
+        _textViewAadhaarNo = view.findViewById(R.id.pd_adhar_no);
+        _textViewPancardNo = view.findViewById(R.id.pd_pan_no);
+        _textViewDob = view.findViewById(R.id.date_picker);
+        _textViewParentName = view.findViewById(R.id.pd_father_name);
+
+        _radioGroup = view.findViewById(R.id.radioGroup);
+        _radioButtonMale = view.findViewById(R.id.rb_male);
+        _radioButtonFemale = view.findViewById(R.id.rb_female);
+        _radioButtonOther = view.findViewById(R.id.rb_other);
+
+        _saveBtn = view.findViewById(R.id.pd_mb_save);
+
+
+        _radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.rb_male:
+                    gender = _radioButtonMale.getText().toString();
+                    break;
+                case R.id.rb_female:
+                    gender = _radioButtonFemale.getText().toString();
+                    break;
+                case R.id.rb_other:
+                    gender = _radioButtonOther.getText().toString();
+                    break;
+            }
+        });
+
+        final Calendar cal = Calendar.getInstance();
+
+        DatePickerDialog.OnDateSetListener date = (view1, year, month, dayOfMonth) -> {
+            cal.set(Calendar.YEAR, year);
+            cal.set(Calendar.MONTH, month);
+            cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+            _textViewDob.setText(
+                    new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime())
+            );
+        };
+
+        _textViewDob.setOnClickListener(n -> {
+            new DatePickerDialog(
+                    getActivity(), date, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
+        });
+
+
+
+        _saveBtn.setOnClickListener(n -> {
+
+
+            if (_textViewName.getText().toString().isEmpty()) {
+                _textViewName.setError("should not be empty");
+                _textViewName.requestFocus();
+                return;
+            }
+
+            if (_textViewAadhaarNo.getText().toString().isEmpty()) {
+                _textViewAadhaarNo.setError("should not be empty");
+                _textViewAadhaarNo.requestFocus();
+                return;
+            }
+
+            if (_textViewPancardNo.getText().toString().isEmpty()) {
+                _textViewPancardNo.setError("should not be empty");
+                _textViewPancardNo.requestFocus();
+                return;
+            }
+
+            if (_textViewDob.getText().toString().isEmpty()) {
+                _textViewDob.setError("should not be empty");
+                _textViewDob.requestFocus();
+                return;
+            }
+
+            if (_textViewParentName.getText().toString().isEmpty()) {
+                _textViewParentName.setError("should not be empty");
+                _textViewParentName.requestFocus();
+                return;
+            }
+
+            if (gender.isEmpty()) {
+                Toast.makeText(getActivity(), "select gender", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            uploadPersonalDetails();
+
+        });
+
+        return view;
     }
+
+    private void uploadPersonalDetails() {
+//        _progressBar.setVisibility(View.VISIBLE);+-+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Vendors");
+        reference.child(FirebaseAuth.getInstance().getUid() + "/PersonalDetails").setValue(
+                new PersonalDetailModel(
+                        _textViewName.getText().toString(),
+                        _textViewAadhaarNo.getText().toString(),
+                        _textViewPancardNo.getText().toString(),
+                        _textViewDob.getText().toString(),
+                        gender,
+                        _textViewParentName.getText().toString()
+                )
+        ).addOnSuccessListener(aVoid -> {
+//            _progressBar.setVisibility(View.GONE);
+            Toast.makeText(getActivity(), "upload successfully", Toast.LENGTH_SHORT).show();
+        }).addOnFailureListener(e -> {
+//            _progressBar.setVisibility(View.GONE);
+            Toast.makeText(getActivity(), "upload failed : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        });
+    }
+
+
 }

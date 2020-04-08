@@ -67,6 +67,29 @@
             android:id="@+id/action_bankDetailFragment_to_vendorFragment"
             app:destination="@id/vendorFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.tricky_tweaks.homekeeping.main.bottom_navigation_fragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_adminFragment"
+            app:destination="@id/adminFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminFragment"
+        android:name="com.tricky_tweaks.homekeeping.admin.AdminFragment"
+        android:label="fragment_admin"
+        tools:layout="@layout/fragment_admin" >
+        <action
+            android:id="@+id/action_adminFragment_to_appliedVendorsFragment"
+            app:destination="@id/appliedVendorsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/appliedVendorsFragment"
+        android:name="com.tricky_tweaks.homekeeping.admin.AppliedVendorsFragment"
+        android:label="fragment_applied_vendors"
+        tools:layout="@layout/fragment_applied_vendors" />
 
 
 </navigation>
