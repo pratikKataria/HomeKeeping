@@ -11,7 +11,11 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_vendorCategory"
-            app:destination="@id/vendorCategory" />
+            app:destination="@id/vendorCategory"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/vendorFragment"
@@ -20,19 +24,40 @@
         tools:layout="@layout/fragment_vendor" >
         <action
             android:id="@+id/action_vendorFragment_to_identityProofFragment"
-            app:destination="@id/identityProofFragment" />
+            app:destination="@id/identityProofFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
         <action
             android:id="@+id/action_vendorFragment_to_personalDetailFragment"
-            app:destination="@id/personalDetailFragment" />
+            app:destination="@id/personalDetailFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
         <action
             android:id="@+id/action_vendorFragment_to_currentAddressFragment"
-            app:destination="@id/currentAddressFragment" />
+            app:destination="@id/currentAddressFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
         <action
             android:id="@+id/action_vendorFragment_to_bankDetailFragment"
-            app:destination="@id/bankDetailFragment" />
+            app:destination="@id/bankDetailFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
         <action
             android:id="@+id/action_vendorFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@layout/fragment_home"/>
     </fragment>
     <fragment
         android:id="@+id/identityProofFragment"
@@ -41,7 +66,11 @@
         tools:layout="@layout/fragment_identity_proof" >
         <action
             android:id="@+id/action_identityProofFragment_to_vendorFragment"
-            app:destination="@id/vendorFragment" />
+            app:destination="@id/vendorFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/personalDetailFragment"
@@ -50,7 +79,11 @@
         tools:layout="@layout/fragment_personal_detail" >
         <action
             android:id="@+id/action_personalDetailFragment_to_vendorFragment"
-            app:destination="@id/vendorFragment" />
+            app:destination="@id/vendorFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/currentAddressFragment"
@@ -59,7 +92,11 @@
         tools:layout="@layout/fragment_current_address" >
         <action
             android:id="@+id/action_currentAddressFragment_to_vendorFragment"
-            app:destination="@id/vendorFragment" />
+            app:destination="@id/vendorFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/bankDetailFragment"
@@ -68,7 +105,11 @@
         tools:layout="@layout/fragment_bank_detail" >
         <action
             android:id="@+id/action_bankDetailFragment_to_vendorFragment"
-            app:destination="@id/vendorFragment" />
+            app:destination="@id/vendorFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -77,7 +118,11 @@
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileFragment_to_adminFragment"
-            app:destination="@id/adminFragment" />
+            app:destination="@id/adminFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/adminFragment"
@@ -86,7 +131,11 @@
         tools:layout="@layout/fragment_admin" >
         <action
             android:id="@+id/action_adminFragment_to_appliedVendorsFragment"
-            app:destination="@id/appliedVendorsFragment" />
+            app:destination="@id/appliedVendorsFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/appliedVendorsFragment"
@@ -105,7 +154,11 @@
         tools:layout="@layout/fragment_vendor_category" >
         <action
             android:id="@+id/action_vendorCategory_to_vendorFragment"
-            app:destination="@id/vendorFragment" />
+            app:destination="@id/vendorFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
 
 
