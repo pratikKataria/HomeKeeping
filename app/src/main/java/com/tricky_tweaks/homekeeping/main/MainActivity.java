@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
 //            NavigationUI.setupActionBarWithNavController(this, this.navController, this.appBarConfiguration);
         }
 
-
     }
 
 }

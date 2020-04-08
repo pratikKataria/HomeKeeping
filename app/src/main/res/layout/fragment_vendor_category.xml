@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".VendorCategory">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Start Your Service"
+        android:textSize="18dp"
+        android:textColor="@color/colorBlack"/>
+    
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp">
+
+        <RadioButton
+            android:id="@+id/rb_electrician"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Electrician"/>
+
+        <RadioButton
+            android:id="@+id/rb_carpainter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Carpainter"/>
+
+        <RadioButton
+            android:id="@+id/rb_plumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Plumber"/>
+
+        <RadioButton
+            android:id="@+id/rb_air_cooler_repair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Air cooler repair"/>
+
+        <RadioButton
+            android:id="@+id/rb_cleaning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cleaning"/>
+
+        <RadioButton
+            android:id="@+id/rb_air_condi_repair_store"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Air Conditioner Repair Service"/>
+
+    </RadioGroup>
+    
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/vendor_category_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        android:text="next"/>
+    
+</LinearLayout>

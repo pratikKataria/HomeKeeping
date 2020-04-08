@@ -32,7 +32,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         MaterialButton _applyAsVendorBtn = view.findViewById(R.id.fragment_home_mb_vendor);
-        _applyAsVendorBtn.setOnClickListener( n -> controller.navigate(R.id.action_homeFragment_to_vendorFragment));
+        _applyAsVendorBtn.setOnClickListener( n -> controller.navigate(R.id.action_homeFragment_to_vendorCategory));
         return view;
     }
 

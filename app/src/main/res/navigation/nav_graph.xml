@@ -10,8 +10,8 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_vendorFragment"
-            app:destination="@id/vendorFragment" />
+            android:id="@+id/action_homeFragment_to_vendorCategory"
+            app:destination="@id/vendorCategory" />
     </fragment>
     <fragment
         android:id="@+id/vendorFragment"
@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_vendorFragment_to_bankDetailFragment"
             app:destination="@id/bankDetailFragment" />
+        <action
+            android:id="@+id/action_vendorFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/identityProofFragment"
@@ -90,6 +93,20 @@
         android:name="com.tricky_tweaks.homekeeping.admin.AppliedVendorsFragment"
         android:label="fragment_applied_vendors"
         tools:layout="@layout/fragment_applied_vendors" />
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.tricky_tweaks.homekeeping.main.bottom_navigation_fragment.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" />
+    <fragment
+        android:id="@+id/vendorCategory"
+        android:name="com.tricky_tweaks.homekeeping.VendorCategory"
+        android:label="fragment_vendor_category"
+        tools:layout="@layout/fragment_vendor_category" >
+        <action
+            android:id="@+id/action_vendorCategory_to_vendorFragment"
+            app:destination="@id/vendorFragment" />
+    </fragment>
 
 
 </navigation>
