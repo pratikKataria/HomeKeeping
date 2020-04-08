@@ -7,11 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -39,7 +44,17 @@ public class PersonalDetailFragment extends Fragment {
 
     private MaterialButton _saveBtn;
 
+    private ProgressBar _progressBar;
+
     private String gender = "";
+
+    private NavController _navController;
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        _navController = Navigation.findNavController(view);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +75,7 @@ public class PersonalDetailFragment extends Fragment {
 
         _saveBtn = view.findViewById(R.id.pd_mb_save);
 
+        _progressBar = view.findViewById(R.id.progressBar);
 
         _radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId) {
@@ -140,7 +156,7 @@ public class PersonalDetailFragment extends Fragment {
     }
 
     private void uploadPersonalDetails() {
-//        _progressBar.setVisibility(View.VISIBLE);+-+
+        _progressBar.setVisibility(View.VISIBLE);
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Vendors");
         reference.child(FirebaseAuth.getInstance().getUid() + "/PersonalDetails").setValue(
                 new PersonalDetailModel(
@@ -152,10 +168,11 @@ public class PersonalDetailFragment extends Fragment {
                         _textViewParentName.getText().toString()
                 )
         ).addOnSuccessListener(aVoid -> {
-//            _progressBar.setVisibility(View.GONE);
+            _progressBar.setVisibility(View.GONE);
+            _navController.popBackStack(R.id.vendorFragment, false);
             Toast.makeText(getActivity(), "upload successfully", Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(e -> {
-//            _progressBar.setVisibility(View.GONE);
+            _progressBar.setVisibility(View.GONE);
             Toast.makeText(getActivity(), "upload failed : " + e.getMessage(), Toast.LENGTH_SHORT).show();
         });
     }

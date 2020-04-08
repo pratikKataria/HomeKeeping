@@ -172,7 +172,7 @@ public class BankDetailFragment extends Fragment {
                             )
                     ).addOnSuccessListener(aVoid -> {
                         Toast.makeText(getActivity(), "details upload successfully", Toast.LENGTH_SHORT).show();
-                        _navController.navigate(R.id.action_bankDetailFragment_to_vendorFragment);
+                        _navController.popBackStack(R.id.vendorFragment, false);
                         _progressBar.setVisibility(View.GONE);
                     }).addOnFailureListener(e -> {
                         Toast.makeText(getContext(), "failed to upload task: " + e.getMessage(), Toast.LENGTH_SHORT).show();

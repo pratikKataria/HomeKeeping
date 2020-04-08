@@ -121,7 +121,7 @@ public class CurrentAddressFragment extends Fragment {
         ).addOnSuccessListener(aVoid -> {
             _progressBar.setVisibility(View.GONE);
             Toast.makeText(getActivity(),"upload successfully", Toast.LENGTH_SHORT).show();
-            _navController.navigate(R.id.action_currentAddressFragment_to_vendorFragment);
+            _navController.popBackStack(R.id.vendorFragment,false);
         }).addOnFailureListener(e -> {
             _progressBar.setVisibility(View.GONE);
             Toast.makeText(getActivity(),"upload failed : "+ e.getMessage(), Toast.LENGTH_SHORT).show();

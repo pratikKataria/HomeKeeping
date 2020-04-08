@@ -171,7 +171,7 @@ public class IdentityProofFragment extends Fragment {
                         reference.child(FirebaseAuth.getInstance().getUid() + "/IdentityProof").updateChildren(imageUrlMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                _navController.navigate(R.id.action_identityProofFragment_to_vendorFragment);
+                                _navController.popBackStack(R.id.vendorFragment, false);
                                 _progressBar.setVisibility(View.GONE);
                             }
                         });
