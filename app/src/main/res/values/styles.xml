@@ -16,4 +16,9 @@
         <item name="android:textColorPrimary">@color/colorBlack</item>
     </style>
 
+
+    <style name="errorButtonOutline" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/red</item>
+    </style>
+
 </resources>

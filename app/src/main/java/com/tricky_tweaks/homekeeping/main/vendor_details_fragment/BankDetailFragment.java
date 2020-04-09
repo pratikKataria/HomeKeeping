@@ -124,8 +124,9 @@ public class BankDetailFragment extends Fragment {
         BankDetailsModel bankDetailsModel =  new BankDetailsModel(
                 _textViewName.getText().toString(),
                 _textViewAccountNumber.getText().toString(),
-                _textViewIFSCCode.getText().toString(),
-                imageUri.toString()
+                imageUri.toString(),
+                _textViewIFSCCode.getText().toString()
+
         );
 
         SharedPrefsUtils.setStringPreference(getActivity(), "bankDetailsModel", new Gson().toJson(bankDetailsModel));

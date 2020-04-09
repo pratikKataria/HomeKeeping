@@ -15,7 +15,6 @@
         android:layout_marginTop="50dp"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_gravity="center"
-        app:strokeColor="@color/green"
         android:text="Submit Id proof"/>
 
     <com.google.android.material.button.MaterialButton
