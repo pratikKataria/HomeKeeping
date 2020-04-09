@@ -1,6 +1,5 @@
 package com.tricky_tweaks.homekeeping.main;
 
-import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
@@ -54,6 +53,11 @@ public class VendorFragment extends Fragment {
     private final static byte ADDHAAR_FRONT_CODE = 14;
     private final static byte AADHAAR_BACK_CODE = 15;
     private final static byte PAN_CODE = 16;
+    
+    private MaterialButton vendPD;
+    private MaterialButton vendCA;
+    private MaterialButton vendBankDetails;
+    private MaterialButton vendIDProof;
 
 
     @Override
@@ -83,29 +87,30 @@ public class VendorFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_vendor, container, false);
 
-        MaterialButton _vendIDProof = view.findViewById(R.id.vendor_mb_id_proof);
-        MaterialButton _vendPD = view.findViewById(R.id.vendor_mb_pd);
-        MaterialButton _vendCA = view.findViewById(R.id.vendor_mb_cd);
-        MaterialButton _vendBankDetails = view.findViewById(R.id.vendor_mb_bank_details);
+        vendIDProof = view.findViewById(R.id.vendor_mb_id_proof);
+        vendPD = view.findViewById(R.id.vendor_mb_pd);
+        vendCA = view.findViewById(R.id.vendor_mb_cd);
+        vendBankDetails = view.findViewById(R.id.vendor_mb_bank_details);
         MaterialButton _sendProfileForVerification = view.findViewById(R.id.fragment_home_mb_send);
 
         init_data_model();
+        setButtonColor();
 
-        _vendIDProof.setOnClickListener(n -> {
+        vendIDProof.setOnClickListener(n -> {
             _navController.navigate(R.id.action_vendorFragment_to_identityProofFragment);
         });
 
-        _vendPD.setOnClickListener(n -> {
+        vendPD.setOnClickListener(n -> {
             _navController.navigate(R.id.action_vendorFragment_to_personalDetailFragment);
 
         });
 
-        _vendCA.setOnClickListener(n -> {
+        vendCA.setOnClickListener(n -> {
             _navController.navigate(R.id.action_vendorFragment_to_currentAddressFragment);
 
         });
 
-        _vendBankDetails.setOnClickListener(n -> {
+        vendBankDetails.setOnClickListener(n -> {
             _navController.navigate(R.id.action_vendorFragment_to_bankDetailFragment);
 
         });
@@ -113,25 +118,25 @@ public class VendorFragment extends Fragment {
         _sendProfileForVerification.setOnClickListener(n -> {
 
             if (bankDetailsModel == null) {
-                _vendBankDetails.setStrokeColor(ColorStateList.valueOf(Color.RED));
+                vendBankDetails.setStrokeColor(ColorStateList.valueOf(Color.RED));
                 Toast.makeText(getActivity(), "complete above details bankDetails", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (personalDetailModel == null) {
-                _vendPD.setStrokeColor(ColorStateList.valueOf(Color.RED));
+                vendPD.setStrokeColor(ColorStateList.valueOf(Color.RED));
                 Toast.makeText(getActivity(), "complete above details personalDetail", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (identityProofModel == null) {
-                _vendIDProof.setStrokeColor(ColorStateList.valueOf(Color.RED));
+                vendIDProof.setStrokeColor(ColorStateList.valueOf(Color.RED));
                 Toast.makeText(getActivity(), "complete above details identityProof", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (currentAddressModel == null) {
-                _vendCA.setStrokeColor(ColorStateList.valueOf(Color.RED));
+                vendCA.setStrokeColor(ColorStateList.valueOf(Color.RED));
                 Toast.makeText(getActivity(), "complete above details currentAddress", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -249,6 +254,34 @@ public class VendorFragment extends Fragment {
                 this,
                 callback
         );
+    }
+
+    private void setButtonColor() {
+        if (bankDetailsModel == null) {
+            vendBankDetails.setStrokeColor(ColorStateList.valueOf(Color.RED));
+        } else {
+            vendBankDetails.setStrokeColor(ColorStateList.valueOf(Color.GREEN));
+        }
+
+        if (personalDetailModel == null) {
+            vendPD.setStrokeColor(ColorStateList.valueOf(Color.RED));
+        } else {
+            vendPD.setStrokeColor(ColorStateList.valueOf(Color.GREEN));
+        }
+
+        if (identityProofModel == null) {
+            vendIDProof.setStrokeColor(ColorStateList.valueOf(Color.RED));
+        } else {
+            vendIDProof.setStrokeColor(ColorStateList.valueOf(Color.GREEN));
+
+        }
+
+        if (currentAddressModel == null) {
+            vendCA.setStrokeColor(ColorStateList.valueOf(Color.RED));
+        } else {
+            vendCA.setStrokeColor(ColorStateList.valueOf(Color.GREEN));
+
+        }
     }
 
 }
