@@ -1,6 +1,8 @@
 package com.tricky_tweaks.homekeeping.model;
 
-public class VendorDataModel {
+import java.io.Serializable;
+
+public class VendorDataModel implements Serializable {
     private BankDetailsModel bankDetailsModel;
     private CurrentAddressModel currentAddressModel;
     private IdentityProofModel identityProofModel;

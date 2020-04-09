@@ -1,7 +1,8 @@
-package com.tricky_tweaks.homekeeping;
+package com.tricky_tweaks.homekeeping.main.vendor;
 
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,25 +10,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.tricky_tweaks.homekeeping.R;
+import com.tricky_tweaks.homekeeping.main.utils.SharedPrefsUtils;
 
 
 /**
@@ -36,6 +27,10 @@ import java.util.Map;
 public class VendorCategory extends Fragment {
 
     private NavController _navController;
+    private MaterialButton nextBtn;
+    private MaterialButton updateBtn;
+    private AlertDialog alertDialog;
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -54,38 +49,21 @@ public class VendorCategory extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_vendor_category, container, false);
 
-        vendorCategorySelectorLayout(view);
+        updateBtn = view.findViewById(R.id.vendor_category_update);
 
-        ProgressDialog dialog = new ProgressDialog(getActivity(), R.style.AppCompatAlertDialogStyle);
-        dialog.setMessage("Loading..");
-        dialog.setCancelable(false);
-        dialog.show();
+//        ProgressDialog dialog; = new ProgressDialog(getActivity(), R.style.AppCompatAlertDialogStyle);
+//        dialog.setMessage("Loading..");
+//        dialog.setCancelable(false);
+//        dialog.show();
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Vendors").child(FirebaseAuth.getInstance().getUid());
-        ref.child("Service").child("vendorService").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    if (!dataSnapshot.getValue(String.class).isEmpty()) {
-                        _navController.navigate(R.id.action_vendorCategory_to_vendorFragment);
-                        dialog.cancel();
-                    }
-                } else {
-                    Toast.makeText(getActivity(), "select service", Toast.LENGTH_SHORT).show();
-                    dialog.cancel();
-                }
-            }
+        String getService = SharedPrefsUtils.getStringPreference(getActivity(), "SERVICE_SELECTED", 0);
+        if (getService == null) {
+            Toast.makeText(getActivity(), "select service", Toast.LENGTH_SHORT).show();
+        } else {
+            showAlertDialog();
+        }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
-
-        return view;
-    }
-
-    private void vendorCategorySelectorLayout(View view) {
         final String[] categorySelected = {""};
 
         RadioGroup radioGroup = view.findViewById(R.id.radioGroup);
@@ -95,7 +73,7 @@ public class VendorCategory extends Fragment {
         RadioButton radioButtonAirCoolerRepair = view.findViewById(R.id.rb_air_cooler_repair);
         RadioButton radioButtonAirCondRepair = view.findViewById(R.id.rb_air_condi_repair_store);
 
-        MaterialButton mbNext = view.findViewById(R.id.vendor_category_next);
+        nextBtn = view.findViewById(R.id.vendor_category_next);
 
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId) {
@@ -117,19 +95,40 @@ public class VendorCategory extends Fragment {
             }
         });
 
-        mbNext.setOnClickListener(n -> {
+        nextBtn.setOnClickListener(n -> {
 
             if (categorySelected[0].isEmpty()) {
                 Toast.makeText(getActivity(), "select category", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            Map<String, Object> service = new HashMap<>();
-            service.put("vendorService", categorySelected[0]);
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Vendors").child(FirebaseAuth.getInstance().getUid());
-            ref.child("Service").updateChildren(service).addOnSuccessListener(aVoid -> Toast.makeText(getActivity(), "service added", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(getActivity(), "failed to upload" + e.getMessage(), Toast.LENGTH_SHORT).show());
-
+            uploadSelectedService(categorySelected[0]);
         });
+
+        return view;
+    }
+
+    public void uploadSelectedService(String selectedService) {
+        SharedPrefsUtils.setStringPreference(getActivity(), "SERVICE_SELECTED", selectedService);
+        _navController.navigate(R.id.action_vendorCategory_to_vendorFragment);
+    }
+
+
+    private void showAlertDialog() {
+        Log.e("vendor category", "dialog shownd");
+        if (getActivity() != null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+                    .setTitle("Vendor Application")
+                    .setMessage("would you like change category")
+                    .setCancelable(false)
+                    .setPositiveButton("next", (dialog, which) -> _navController.navigate(R.id.action_vendorCategory_to_vendorFragment)).setNegativeButton("cancel", (dialog, which) -> _navController.popBackStack(R.id.homeFragment, false))
+                    .setNeutralButton("change", (dialog, which) -> {
+                        nextBtn.setText("update");
+                    });
+
+            alertDialog = builder.create();
+            alertDialog.show();
+        }
+
     }
 
 

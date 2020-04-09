@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".main.VendorFragment"
+    tools:context=".main.vendor.VendorFragment"
     android:gravity="bottom"
     android:orientation="vertical">
 
@@ -45,14 +45,35 @@
         android:layout_gravity="center"
         android:text="bank details"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/fragment_home_mb_send"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center|bottom"
-        android:text="Verify"/>
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp">
+
+        <LinearLayout
+            android:id="@+id/largeLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fragment_home_mb_send"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="center|bottom"
+                android:text="Verify" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="8dp"
+            android:visibility="gone"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/white" />
+    </FrameLayout>
 
 </LinearLayout>

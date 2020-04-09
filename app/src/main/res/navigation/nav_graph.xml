@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/vendorFragment"
-        android:name="com.tricky_tweaks.homekeeping.main.VendorFragment"
+        android:name="com.tricky_tweaks.homekeeping.main.vendor.VendorFragment"
         android:label="fragment_vendor"
         tools:layout="@layout/fragment_vendor" >
         <action
@@ -58,6 +58,13 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popUpTo="@layout/fragment_home"/>
+        <action
+            android:id="@+id/action_vendorFragment_to_viewApplicationFragment"
+            app:destination="@id/viewApplicationFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/identityProofFragment"
@@ -141,7 +148,15 @@
         android:id="@+id/appliedVendorsFragment"
         android:name="com.tricky_tweaks.homekeeping.admin.AppliedVendorsFragment"
         android:label="fragment_applied_vendors"
-        tools:layout="@layout/fragment_applied_vendors" />
+        tools:layout="@layout/fragment_applied_vendors" >
+        <action
+            android:id="@+id/action_appliedVendorsFragment_to_viewApplicationFragment"
+            app:destination="@id/viewApplicationFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
+    </fragment>
     <fragment
         android:id="@+id/ordersFragment"
         android:name="com.tricky_tweaks.homekeeping.main.bottom_navigation_fragment.OrdersFragment"
@@ -149,7 +164,7 @@
         tools:layout="@layout/fragment_orders" />
     <fragment
         android:id="@+id/vendorCategory"
-        android:name="com.tricky_tweaks.homekeeping.VendorCategory"
+        android:name="com.tricky_tweaks.homekeeping.main.vendor.VendorCategory"
         android:label="fragment_vendor_category"
         tools:layout="@layout/fragment_vendor_category" >
         <action
@@ -159,6 +174,15 @@
             app:popExitAnim="@anim/slide_out_right"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"/>
+    </fragment>
+    <fragment
+        android:id="@+id/viewApplicationFragment"
+        android:name="com.tricky_tweaks.homekeeping.main.vendor.ViewApplicationFragment"
+        android:label="fragment_view_application"
+        tools:layout="@layout/fragment_view_application" >
+        <argument
+            android:name="dataModel"
+            app:argType="com.tricky_tweaks.homekeeping.model.VendorDataModel" />
     </fragment>
 
 

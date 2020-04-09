@@ -1,5 +1,7 @@
-package com.tricky_tweaks.homekeeping.main;
+package com.tricky_tweaks.homekeeping.main.vendor;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
@@ -8,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
@@ -59,6 +62,8 @@ public class VendorFragment extends Fragment {
     private MaterialButton vendBankDetails;
     private MaterialButton vendIDProof;
 
+    private ProgressBar progressBar;
+    private MaterialButton sendProfileForVerification;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -91,10 +96,10 @@ public class VendorFragment extends Fragment {
         vendPD = view.findViewById(R.id.vendor_mb_pd);
         vendCA = view.findViewById(R.id.vendor_mb_cd);
         vendBankDetails = view.findViewById(R.id.vendor_mb_bank_details);
-        MaterialButton _sendProfileForVerification = view.findViewById(R.id.fragment_home_mb_send);
+        progressBar = view.findViewById(R.id.progressBar);
+        sendProfileForVerification = view.findViewById(R.id.fragment_home_mb_send);
 
-        init_data_model();
-        setButtonColor();
+        onApplicationAlreadyPresent();
 
         vendIDProof.setOnClickListener(n -> {
             _navController.navigate(R.id.action_vendorFragment_to_identityProofFragment);
@@ -115,7 +120,7 @@ public class VendorFragment extends Fragment {
 
         });
 
-        _sendProfileForVerification.setOnClickListener(n -> {
+        sendProfileForVerification.setOnClickListener(n -> {
 
             if (bankDetailsModel == null) {
                 vendBankDetails.setStrokeColor(ColorStateList.valueOf(Color.RED));
@@ -159,6 +164,7 @@ public class VendorFragment extends Fragment {
                 }
             }
 
+            progressBar.setVisibility(View.VISIBLE);
 
             uploadImage("fdsdaf", new File(Objects.requireNonNull(Uri.parse(bankDetailsModel.getPassbookImageUrl()).getPath())), PASSBOOK_CODE );
 
@@ -218,18 +224,22 @@ public class VendorFragment extends Fragment {
     }
 
     private void sendApplicationRequest() {
+
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("VendorApplications")
-                .child(FirebaseAuth.getInstance().getUid());
+                .getReference("VendorApplications");
+
+        String key = reference.push().getKey();
 
         Map<String, Object> metadata = new HashMap<>();
 
-        String key = reference.push().getKey();
         metadata.put("applicationId", key);
         metadata.put("UserId", FirebaseAuth.getInstance().getUid());
         metadata.put("date", new SimpleDateFormat("dd MMMM yyyy").format(new Date()));
         metadata.put("status", "pending");
-        reference.child(key+"/").setValue(
+        metadata.put("service", SharedPrefsUtils.getStringPreference(getActivity(), "SERVICE_SELECTED", 0));
+        reference.child(FirebaseAuth.getInstance().getUid())
+                .child(key)
+                .setValue(
                 new VendorDataModel(
                         bankDetailsModel,
                         identityProofModel,
@@ -237,9 +247,16 @@ public class VendorFragment extends Fragment {
                         personalDetailModel
                 )
         ).addOnSuccessListener(aVoid -> {
-            reference.child(key+"/"+"metadata/").setValue(metadata);
+            reference.child(FirebaseAuth.getInstance().getUid()).child(key).child("metadata/").setValue(metadata);
+            progressBar.setVisibility(View.GONE);
+            sendProfileForVerification.setText("successfully send");
+            SharedPrefsUtils.setBooleanPreference(getActivity(), "APPLICATION_ALREADY_EXIST",  true);
+            SharedPrefsUtils.removeValuePreference(getActivity(), "SERVICE_SELECTED");
             Toast.makeText(getActivity(), "application send successfully", Toast.LENGTH_SHORT).show();
-        }).addOnFailureListener(e -> Toast.makeText(getActivity(), "failed to send " + e.getMessage(), Toast.LENGTH_SHORT).show());
+        }).addOnFailureListener(e -> {
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(getActivity(), "failed to send " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void onBackPressed() {
@@ -254,6 +271,51 @@ public class VendorFragment extends Fragment {
                 this,
                 callback
         );
+    }
+
+    private void onApplicationAlreadyPresent() {
+        boolean isApplicationPresent = SharedPrefsUtils.getBooleanPreference(getActivity(), "APPLICATION_ALREADY_EXIST", false);
+        if (isApplicationPresent) {
+            showAlertDialog();
+        }else{
+            setButtonColor();
+            init_data_model();
+        }
+    }
+
+    private void showAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+                .setTitle("Vendor Application")
+                .setMessage("would you like create new application?")
+                .setCancelable(false)
+                .setPositiveButton("CREATE NEW",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SharedPrefsUtils.removeValuePreference(getContext(), "bankDetailsModel");
+                        SharedPrefsUtils.removeValuePreference(getContext(), "identityProofModel");
+                        SharedPrefsUtils.removeValuePreference(getContext(), "personalDetailModel");
+                        SharedPrefsUtils.removeValuePreference(getContext(), "currentAddressModel");
+                        SharedPrefsUtils.setBooleanPreference(getActivity(), "APPLICATION_ALREADY_EXIST",  false);
+                        init_data_model();
+                        setButtonColor();
+                    }
+                }).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        _navController.popBackStack(R.id.homeFragment, false);
+
+                    }
+                });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        init_data_model();
+        setButtonColor();
     }
 
     private void setButtonColor() {

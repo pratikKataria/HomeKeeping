@@ -186,4 +186,24 @@ final public class SharedPrefsUtils {
         }
         return false;
     }
+
+    /**
+     * Helper method to write a boolean value to {@link SharedPreferences}.
+     *
+     * @param context a {@link Context} object.
+     * @param key
+     * @param value
+     * @return true if the new value was successfully written to persistent storage.
+     * @Auth pratik katariya
+     * @date 9/2019/03
+     */
+    public static void removeValuePreference(Context context, String key) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (sharedPreferences != null) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.remove(key);
+            editor.apply();
+        }
+    }
+
 }

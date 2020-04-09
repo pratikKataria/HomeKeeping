@@ -70,7 +70,7 @@ public class BankDetailFragment extends Fragment {
 
         _imageViewPassbook.setOnClickListener(n -> {
 
-            Intent intent = CropImage.activity().setAspectRatio(1, 1).getIntent(getActivity());
+            Intent intent = CropImage.activity().setAspectRatio(16, 9).getIntent(getActivity());
             startActivityForResult(intent, PASSBOOK_CODE);
         });
 

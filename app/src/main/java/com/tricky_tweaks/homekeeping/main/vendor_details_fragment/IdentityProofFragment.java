@@ -74,17 +74,17 @@ public class IdentityProofFragment extends Fragment {
         imageUriList = new ArrayList<>();
 
         _aadhaarFrontImage.setOnClickListener(n -> {
-            Intent intent = CropImage.activity().setAspectRatio(1, 1).getIntent(getActivity());
+            Intent intent = CropImage.activity().setAspectRatio(16, 9).getIntent(getActivity());
             startActivityForResult(intent, AADHAAR_FRONT_CODE);
         });
 
         _aadhaarBackImage.setOnClickListener(n -> {
-            Intent intent = CropImage.activity().setAspectRatio(1, 1).getIntent(getActivity());
+            Intent intent = CropImage.activity().setAspectRatio(16, 9).getIntent(getActivity());
             startActivityForResult(intent, AADHAAR_BACK_CODE);
         });
 
         _panImage.setOnClickListener(n -> {
-            Intent intent = CropImage.activity().setAspectRatio(1, 1).getIntent(getActivity());
+            Intent intent = CropImage.activity().setAspectRatio(16, 9).getIntent(getActivity());
             startActivityForResult(intent, PAN_CODE);
         });
 

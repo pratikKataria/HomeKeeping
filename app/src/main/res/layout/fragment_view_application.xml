@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vendorDataModel"
+            type="com.tricky_tweaks.homekeeping.model.VendorDataModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".main.vendor.ViewApplicationFragment"
+        tools:showIn="@layout/fragment_view_application">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <include
+                android:id="@+id/include_personal_details"
+                layout="@layout/layout_personal_details"
+                bind:personalData="@{vendorDataModel.personalDetailModel}"/>
+
+            <androidx.legacy.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address Details"
+                android:layout_gravity="center"/>
+
+            <include layout="@layout/layout_address_details"
+                bind:currentAddressDetails="@{vendorDataModel.currentAddressModel}"/>
+
+            <androidx.legacy.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Banking Details"
+                android:layout_gravity="center"/>
+
+            <include layout="@layout/layout_banking_details"
+                bind:bankDetails="@{vendorDataModel.bankDetailsModel}"/>
+
+            <androidx.legacy.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Identity proof"
+                android:layout_gravity="center"/>
+
+            <include layout="@layout/layout_id_proof"
+                bind:identityProofDetails="@{vendorDataModel.identityProofModel}"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAccept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="accept"/>
+        </LinearLayout>
+    </ScrollView>
+</layout>
+
