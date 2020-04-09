@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
-import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -20,10 +18,9 @@ import androidx.navigation.Navigation;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
 import com.tricky_tweaks.homekeeping.R;
+import com.tricky_tweaks.homekeeping.main.utils.SharedPrefsUtils;
 import com.tricky_tweaks.homekeeping.model.PersonalDetailModel;
 
 import java.text.SimpleDateFormat;
@@ -148,34 +145,51 @@ public class PersonalDetailFragment extends Fragment {
                 return;
             }
 
-            uploadPersonalDetails();
+//            uploadPersonalDetails();
+
+            savedToSharedPrefs();
 
         });
 
         return view;
     }
 
-    private void uploadPersonalDetails() {
-        _progressBar.setVisibility(View.VISIBLE);
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Vendors");
-        reference.child(FirebaseAuth.getInstance().getUid() + "/PersonalDetails").setValue(
-                new PersonalDetailModel(
+    private void savedToSharedPrefs() {
+        PersonalDetailModel personalDetailModel = new PersonalDetailModel(
                         _textViewName.getText().toString(),
                         _textViewAadhaarNo.getText().toString(),
                         _textViewPancardNo.getText().toString(),
                         _textViewDob.getText().toString(),
                         gender,
                         _textViewParentName.getText().toString()
-                )
-        ).addOnSuccessListener(aVoid -> {
-            _progressBar.setVisibility(View.GONE);
-            _navController.popBackStack(R.id.vendorFragment, false);
-            Toast.makeText(getActivity(), "upload successfully", Toast.LENGTH_SHORT).show();
-        }).addOnFailureListener(e -> {
-            _progressBar.setVisibility(View.GONE);
-            Toast.makeText(getActivity(), "upload failed : " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        });
+        );
+
+        SharedPrefsUtils.setStringPreference(getActivity(), "personalDetailModel", new Gson().toJson(personalDetailModel));
+        _navController.popBackStack(R.id.vendorFragment, false);
     }
+
+
+//    private void uploadPersonalDetails() {
+//        _progressBar.setVisibility(View.VISIBLE);
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Vendors");
+//        reference.child(FirebaseAuth.getInstance().getUid() + "/personalDetailModel").setValue(
+//                new PersonalDetailModel(
+//                        _textViewName.getText().toString(),
+//                        _textViewAadhaarNo.getText().toString(),
+//                        _textViewPancardNo.getText().toString(),
+//                        _textViewDob.getText().toString(),
+//                        gender,
+//                        _textViewParentName.getText().toString()
+//                )
+//        ).addOnSuccessListener(aVoid -> {
+//            _progressBar.setVisibility(View.GONE);
+//            _navController.popBackStack(R.id.vendorFragment, false);
+//            Toast.makeText(getActivity(), "upload successfully", Toast.LENGTH_SHORT).show();
+//        }).addOnFailureListener(e -> {
+//            _progressBar.setVisibility(View.GONE);
+//            Toast.makeText(getActivity(), "upload failed : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//        });
+//    }
 
 
 }

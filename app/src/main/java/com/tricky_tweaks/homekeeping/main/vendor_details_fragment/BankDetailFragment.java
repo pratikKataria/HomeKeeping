@@ -18,24 +18,13 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+import com.google.gson.Gson;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.tricky_tweaks.homekeeping.R;
+import com.tricky_tweaks.homekeeping.main.utils.SharedPrefsUtils;
 import com.tricky_tweaks.homekeeping.model.BankDetailsModel;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-
-import id.zelory.compressor.Compressor;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -123,7 +112,7 @@ public class BankDetailFragment extends Fragment {
                 return;
             }
 
-            uploadDetails();
+            saveToSharedPrefs();
 
         });
 
@@ -131,60 +120,70 @@ public class BankDetailFragment extends Fragment {
         return view;
     }
 
-    private void uploadDetails() {
-        uploadImage();
+    private void saveToSharedPrefs() {
+        BankDetailsModel bankDetailsModel =  new BankDetailsModel(
+                _textViewName.getText().toString(),
+                _textViewAccountNumber.getText().toString(),
+                _textViewIFSCCode.getText().toString(),
+                imageUri.toString()
+        );
+
+        SharedPrefsUtils.setStringPreference(getActivity(), "bankDetailsModel", new Gson().toJson(bankDetailsModel));
+        _navController.popBackStack(R.id.vendorFragment, false);
+
     }
 
-    private void uploadImage() {
-        _progressBar.setVisibility(View.VISIBLE);
-        File newImageFile = new File(imageUri.getPath());
 
-        try {
-            compressedImageFile = new Compressor(getActivity())
-                    .setQuality(30).compressToBitmap(newImageFile);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Vendors");
-        String key = reference.push().getKey();
-
-        StorageReference storage = FirebaseStorage.getInstance().getReference(FirebaseAuth.getInstance().getUid())
-                .child("IdentityProofImages/");
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        compressedImageFile.compress(Bitmap.CompressFormat.JPEG, 30, baos);
-        byte[] thumbData = baos.toByteArray();
-
-        UploadTask uploadTask = storage.child(key + ".jpeg").putBytes(thumbData);
-        uploadTask.addOnSuccessListener(taskSnapshot -> {
-            if (taskSnapshot.getMetadata() != null && taskSnapshot.getMetadata().getReference() != null) {
-                Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
-                result.addOnSuccessListener(uri -> {
-                    String thumbImageDownloadUri = uri.toString();
-                    reference.child(FirebaseAuth.getInstance().getUid() + "/BankDetails").setValue(
-                            new BankDetailsModel(
-                                    _textViewName.getText().toString(),
-                                    _textViewAccountNumber.getText().toString(),
-                                    _textViewIFSCCode.getText().toString(),
-                                    thumbImageDownloadUri
-                            )
-                    ).addOnSuccessListener(aVoid -> {
-                        Toast.makeText(getActivity(), "details upload successfully", Toast.LENGTH_SHORT).show();
-                        _navController.popBackStack(R.id.vendorFragment, false);
-                        _progressBar.setVisibility(View.GONE);
-                    }).addOnFailureListener(e -> {
-                        Toast.makeText(getContext(), "failed to upload task: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        _progressBar.setVisibility(View.GONE);
-                    });
-                });
-            }
-        }).addOnFailureListener(e -> {
-            _progressBar.setVisibility(View.GONE);
-            Toast.makeText(getActivity(), "error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        });
-    }
+//    private void uploadImage() {
+//        _progressBar.setVisibility(View.VISIBLE);
+//        File newImageFile = new File(imageUri.getPath());
+//
+//        try {
+//            compressedImageFile = new Compressor(getActivity())
+//                    .setQuality(30).compressToBitmap(newImageFile);
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Vendors");
+//        String key = reference.push().getKey();
+//
+//        StorageReference storage = FirebaseStorage.getInstance().getReference(FirebaseAuth.getInstance().getUid())
+//                .child("IdentityProofImages/");
+//
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        compressedImageFile.compress(Bitmap.CompressFormat.JPEG, 30, baos);
+//        byte[] thumbData = baos.toByteArray();
+//
+//        UploadTask uploadTask = storage.child(key + ".jpeg").putBytes(thumbData);
+//        uploadTask.addOnSuccessListener(taskSnapshot -> {
+//            if (taskSnapshot.getMetadata() != null && taskSnapshot.getMetadata().getReference() != null) {
+//                Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+//                result.addOnSuccessListener(uri -> {
+//                    String thumbImageDownloadUri = uri.toString();
+//                    reference.child(FirebaseAuth.getInstance().getUid() + "/bankDetailsModel").setValue(
+//                            new BankDetailsModel(
+//                                    _textViewName.getText().toString(),
+//                                    _textViewAccountNumber.getText().toString(),
+//                                    _textViewIFSCCode.getText().toString(),
+//                                    thumbImageDownloadUri
+//                            )
+//                    ).addOnSuccessListener(aVoid -> {
+//                        Toast.makeText(getActivity(), "details upload successfully", Toast.LENGTH_SHORT).show();
+//                        _navController.popBackStack(R.id.vendorFragment, false);
+//                        _progressBar.setVisibility(View.GONE);
+//                    }).addOnFailureListener(e -> {
+//                        Toast.makeText(getContext(), "failed to upload task: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                        _progressBar.setVisibility(View.GONE);
+//                    });
+//                });
+//            }
+//        }).addOnFailureListener(e -> {
+//            _progressBar.setVisibility(View.GONE);
+//            Toast.makeText(getActivity(), "error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//        });
+//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

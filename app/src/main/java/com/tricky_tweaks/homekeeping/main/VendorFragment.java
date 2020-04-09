@@ -35,6 +35,7 @@ public class VendorFragment extends Fragment {
         MaterialButton _vendPD = view.findViewById(R.id.vendor_mb_pd);
         MaterialButton _vendCA = view.findViewById(R.id.vendor_mb_cd);
         MaterialButton _vendBankDetails = view.findViewById(R.id.vendor_mb_bank_details);
+        MaterialButton _sendProfileForVerification = view.findViewById(R.id.fragment_home_mb_send);
 
         _vendIDProof.setOnClickListener(n -> {
             _navController.navigate(R.id.action_vendorFragment_to_identityProofFragment);

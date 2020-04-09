@@ -69,4 +69,16 @@ public class PersonalDetailModel {
     public void setFatherName(String fatherName) {
         this.fatherName = fatherName;
     }
+
+    @Override
+    public String toString() {
+        return "PersonalDetailModel{" +
+                "name='" + name + '\'' +
+                ", aadharNo='" + aadharNo + '\'' +
+                ", panNo='" + panNo + '\'' +
+                ", dob='" + dob + '\'' +
+                ", gender='" + gender + '\'' +
+                ", fatherName='" + fatherName + '\'' +
+                '}';
+    }
 }

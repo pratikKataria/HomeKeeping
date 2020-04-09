@@ -17,28 +17,15 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+import com.google.gson.Gson;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.tricky_tweaks.homekeeping.R;
+import com.tricky_tweaks.homekeeping.main.utils.SharedPrefsUtils;
 import com.tricky_tweaks.homekeeping.model.IdentityProofModel;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
-
-import id.zelory.compressor.Compressor;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -102,88 +89,93 @@ public class IdentityProofFragment extends Fragment {
         });
 
         _saveButton.setOnClickListener(n -> {
-            if (_aadhaarFrontImageUri == null) {
+            if (_aadhaarFrontImageUri == null && _aadhaarBackImageUri == null && _panImageUri == null) {
                 Toast.makeText(getActivity(), "select image", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if (_aadhaarBackImageUri == null) {
-                Toast.makeText(getActivity(), "select image", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            if (_panImageUri == null) {
-                Toast.makeText(getActivity(), "select image", Toast.LENGTH_SHORT).show();
-                return;
-            }
 
             Toast.makeText(getActivity(), "uploading image...", Toast.LENGTH_SHORT).show();
-            uploadImage(_aadhaarFrontImageUri, AADHAAR_FRONT_CODE);
+//            uploadImage(_aadhaarFrontImageUri, AADHAAR_FRONT_CODE);
+//
+//            uploadImage(_aadhaarBackImageUri, AADHAAR_BACK_CODE);
+//
+//            uploadImage(_panImageUri, PAN_CODE);
 
-            uploadImage(_aadhaarBackImageUri, AADHAAR_BACK_CODE);
-
-            uploadImage(_panImageUri, PAN_CODE);
+            saveToSharedPrefs();
 
         });
 
         return view;
     }
 
-    private void uploadImage(Uri imageUri, int code) {
-        _progressBar.setVisibility(View.VISIBLE);
-        File newImageFile = new File(imageUri.getPath());
+    private void saveToSharedPrefs() {
 
-        try {
-            compressedImageFile = new Compressor(getActivity())
-                    .setQuality(30).compressToBitmap(newImageFile);
+        IdentityProofModel identityProofModel = new IdentityProofModel(
+                _aadhaarFrontImageUri.toString(),
+                _aadhaarBackImageUri.toString(),
+                _panImageUri.toString()
+        );
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SharedPrefsUtils.setStringPreference(getActivity(), "identityProofModel", new Gson().toJson(identityProofModel));
+        _navController.popBackStack(R.id.vendorFragment, false);
 
-        StorageReference storage = FirebaseStorage.getInstance().getReference(FirebaseAuth.getInstance().getUid())
-                .child("IdentityProofImages/");
-
-        Map<String, Object> imageUrlMap = new HashMap<>();
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Vendors");
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        compressedImageFile.compress(Bitmap.CompressFormat.JPEG, 30, baos);
-        byte[] thumbData = baos.toByteArray();
-
-        UploadTask uploadTask = storage.child(getSaltString() + ".jpeg").putBytes(thumbData);
-        uploadTask.addOnSuccessListener(taskSnapshot -> {
-            if (taskSnapshot.getMetadata() != null && taskSnapshot.getMetadata().getReference() != null) {
-                Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
-                result.addOnSuccessListener(uri -> {
-                    String thumbImageDownloadUri = uri.toString();
-                    if (code == AADHAAR_FRONT_CODE) {
-                        imageUrlMap.put("aadhaarCardFrontImageUrl", thumbImageDownloadUri);
-                        reference.child(FirebaseAuth.getInstance().getUid() + "/IdentityProof").updateChildren(imageUrlMap);
-                        _progressBar.setVisibility(View.GONE);
-                    } else if (code == AADHAAR_BACK_CODE) {
-                        _progressBar.setVisibility(View.GONE);
-                        reference.child(FirebaseAuth.getInstance().getUid() + "/IdentityProof").updateChildren(imageUrlMap);
-                        imageUrlMap.put("aadhaarCardBackImageUrl", thumbImageDownloadUri);
-                    } else if (code == PAN_CODE) {
-                        imageUrlMap.put("panCardUrl", thumbImageDownloadUri);
-                        reference.child(FirebaseAuth.getInstance().getUid() + "/IdentityProof").updateChildren(imageUrlMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                _navController.popBackStack(R.id.vendorFragment, false);
-                                _progressBar.setVisibility(View.GONE);
-                            }
-                        });
-                    }
-
-                });
-            }
-        }).addOnFailureListener(e -> {
-            _progressBar.setVisibility(View.GONE);
-            Toast.makeText(getActivity(), "error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        });
     }
+
+
+//    private void uploadImage(Uri imageUri, int code) {
+//        _progressBar.setVisibility(View.VISIBLE);
+//        File newImageFile = new File(imageUri.getPath());
+//
+//        try {
+//            compressedImageFile = new Compressor(getActivity())
+//                    .setQuality(30).compressToBitmap(newImageFile);
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        StorageReference storage = FirebaseStorage.getInstance().getReference(FirebaseAuth.getInstance().getUid())
+//                .child("IdentityProofImages/");
+//
+//        Map<String, Object> imageUrlMap = new HashMap<>();
+//
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Vendors");
+//
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        compressedImageFile.compress(Bitmap.CompressFormat.JPEG, 30, baos);
+//        byte[] thumbData = baos.toByteArray();
+//
+//        UploadTask uploadTask = storage.child(getSaltString() + ".jpeg").putBytes(thumbData);
+//        uploadTask.addOnSuccessListener(taskSnapshot -> {
+//            if (taskSnapshot.getMetadata() != null && taskSnapshot.getMetadata().getReference() != null) {
+//                Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+//                result.addOnSuccessListener(uri -> {
+//                    String thumbImageDownloadUri = uri.toString();
+//                    if (code == AADHAAR_FRONT_CODE) {
+//                        imageUrlMap.put("aadhaarCardFrontImageUrl", thumbImageDownloadUri);
+//                        reference.child(FirebaseAuth.getInstance().getUid() + "/identityProofModel").updateChildren(imageUrlMap);
+//                    } else if (code == AADHAAR_BACK_CODE) {
+//                        imageUrlMap.put("aadhaarCardBackImageUrl", thumbImageDownloadUri);
+//                        reference.child(FirebaseAuth.getInstance().getUid() + "/identityProofModel").updateChildren(imageUrlMap);
+//                    } else if (code == PAN_CODE) {
+//                        imageUrlMap.put("panCardUrl", thumbImageDownloadUri);
+//                        reference.child(FirebaseAuth.getInstance().getUid() + "/identityProofModel").updateChildren(imageUrlMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//                                _navController.popBackStack(R.id.vendorFragment, false);
+//                                _progressBar.setVisibility(View.GONE);
+//                            }
+//                        });
+//                    }
+//
+//                });
+//            }
+//        }).addOnFailureListener(e -> {
+//            _progressBar.setVisibility(View.GONE);
+//            Toast.makeText(getActivity(), "error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//        });
+//    }
 
 
     @Override

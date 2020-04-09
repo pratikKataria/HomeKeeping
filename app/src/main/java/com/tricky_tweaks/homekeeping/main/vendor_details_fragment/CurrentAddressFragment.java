@@ -1,14 +1,10 @@
 package com.tricky_tweaks.homekeeping.main.vendor_details_fragment;
 
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,14 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
 import com.tricky_tweaks.homekeeping.R;
+import com.tricky_tweaks.homekeeping.main.utils.SharedPrefsUtils;
 import com.tricky_tweaks.homekeeping.model.CurrentAddressModel;
 
 
@@ -100,31 +93,45 @@ public class CurrentAddressFragment extends Fragment {
                 return;
             }
 
-            uploadAddress();
-
+//            uploadAddress();
+            saveToSharedPrefs();
         });
 
         return view;
     }
 
-    private void uploadAddress() {
-        _progressBar.setVisibility(View.VISIBLE);
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Vendors");
-        reference.child(FirebaseAuth.getInstance().getUid() + "/CurrentAddress").setValue(
-                new CurrentAddressModel(
+    private void saveToSharedPrefs() {
+
+        CurrentAddressModel currentAddressModel = new CurrentAddressModel(
                         _textViewHouseNo.getText().toString(),
                         _textViewStreet.getText().toString(),
                         _textViewPincode.getText().toString(),
                         _textViewCity.getText().toString(),
                         _textViewState.getText().toString()
-                )
-        ).addOnSuccessListener(aVoid -> {
-            _progressBar.setVisibility(View.GONE);
-            Toast.makeText(getActivity(),"upload successfully", Toast.LENGTH_SHORT).show();
-            _navController.popBackStack(R.id.vendorFragment,false);
-        }).addOnFailureListener(e -> {
-            _progressBar.setVisibility(View.GONE);
-            Toast.makeText(getActivity(),"upload failed : "+ e.getMessage(), Toast.LENGTH_SHORT).show();
-        });
+        );
+        SharedPrefsUtils.setStringPreference(getActivity(), "currentAddressModel", new Gson().toJson(currentAddressModel));
+        _navController.popBackStack(R.id.vendorFragment, false);
+
     }
+
+//    private void uploadAddress() {
+//        _progressBar.setVisibility(View.VISIBLE);
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Vendors");
+//        reference.child(FirebaseAuth.getInstance().getUid() + "/currentAddressModel").setValue(
+//                new CurrentAddressModel(
+//                        _textViewHouseNo.getText().toString(),
+//                        _textViewStreet.getText().toString(),
+//                        _textViewPincode.getText().toString(),
+//                        _textViewCity.getText().toString(),
+//                        _textViewState.getText().toString()
+//                )
+//        ).addOnSuccessListener(aVoid -> {
+//            _progressBar.setVisibility(View.GONE);
+//            Toast.makeText(getActivity(),"upload successfully", Toast.LENGTH_SHORT).show();
+//            _navController.popBackStack(R.id.vendorFragment,false);
+//        }).addOnFailureListener(e -> {
+//            _progressBar.setVisibility(View.GONE);
+//            Toast.makeText(getActivity(),"upload failed : "+ e.getMessage(), Toast.LENGTH_SHORT).show();
+//        });
+//    }
 }
