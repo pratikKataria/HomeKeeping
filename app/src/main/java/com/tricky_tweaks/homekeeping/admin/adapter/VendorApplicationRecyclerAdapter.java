@@ -4,13 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tricky_tweaks.homekeeping.R;
+import com.tricky_tweaks.homekeeping.model.Metadata;
 import com.tricky_tweaks.homekeeping.model.PersonalDetailModel;
 import com.tricky_tweaks.homekeeping.model.VendorDataModel;
 
@@ -58,7 +58,10 @@ public class VendorApplicationRecyclerAdapter extends RecyclerView.Adapter<Recyc
                 personalDetailModel.getPanNo(),
                 personalDetailModel.getGender(),
                 personalDetailModel.getDob(),
-                personalDetailModel.getFatherName());
+                personalDetailModel.getFatherName()
+        );
+
+        vendorCardViewHolder.setStatus(vendorDataModelList.get(position).getMetadata());
     }
 
     @Override
@@ -75,6 +78,7 @@ public class VendorApplicationRecyclerAdapter extends RecyclerView.Adapter<Recyc
         TextView genderTextView;
         TextView dobTextView;
         TextView fatherNameTextView;
+        TextView statusTextView;
 
         public VendorCardViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
@@ -85,6 +89,7 @@ public class VendorApplicationRecyclerAdapter extends RecyclerView.Adapter<Recyc
             genderTextView = itemView.findViewById(R.id.pd_gender);
             dobTextView = itemView.findViewById(R.id.pd_dob);
             fatherNameTextView = itemView.findViewById(R.id.pd_f_name);
+            statusTextView = itemView.findViewById(R.id.status);
 
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
@@ -94,16 +99,17 @@ public class VendorApplicationRecyclerAdapter extends RecyclerView.Adapter<Recyc
                     }
                 }
             });
+
         }
 
-        public void setCardView(
+        void setCardView(
                 String name,
                 String aadharNo,
                 String panNo,
                 String gender,
                 String dob,
                 String fatherName
-        ) {
+                ) {
             nameTextView.setText(name);
             aadharNoTextView.setText(aadharNo);
             panNoTextView.setText(panNo);
@@ -111,6 +117,11 @@ public class VendorApplicationRecyclerAdapter extends RecyclerView.Adapter<Recyc
             dobTextView.setText(dob);
             fatherNameTextView.setText(fatherName);
         }
+
+        void setStatus(Metadata metadata) {
+            statusTextView.setText(metadata.getStatus());
+        }
+
     }
 
 }

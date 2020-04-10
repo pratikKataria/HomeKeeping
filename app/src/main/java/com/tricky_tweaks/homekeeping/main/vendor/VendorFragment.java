@@ -31,6 +31,7 @@ import com.tricky_tweaks.homekeeping.main.utils.UploadImageUtils;
 import com.tricky_tweaks.homekeeping.model.BankDetailsModel;
 import com.tricky_tweaks.homekeeping.model.CurrentAddressModel;
 import com.tricky_tweaks.homekeeping.model.IdentityProofModel;
+import com.tricky_tweaks.homekeeping.model.Metadata;
 import com.tricky_tweaks.homekeeping.model.PersonalDetailModel;
 import com.tricky_tweaks.homekeeping.model.VendorDataModel;
 
@@ -166,6 +167,8 @@ public class VendorFragment extends Fragment {
 
             progressBar.setVisibility(View.VISIBLE);
 
+            //todo change random string in Firebase storage  below
+
             uploadImage("fdsdaf", new File(Objects.requireNonNull(Uri.parse(bankDetailsModel.getPassbookImageUrl()).getPath())), PASSBOOK_CODE );
 
             uploadImage("fdsdaf", new File(Objects.requireNonNull(Uri.parse(identityProofModel.getAadhaarCardFrontImageUrl()).getPath())), ADDHAAR_FRONT_CODE);
@@ -230,13 +233,14 @@ public class VendorFragment extends Fragment {
 
         String key = reference.push().getKey();
 
-        Map<String, Object> metadata = new HashMap<>();
+        Metadata metadata = new Metadata(
+                FirebaseAuth.getInstance().getUid(),
+                key,
+                new SimpleDateFormat("dd MMMM yyyy").format(new Date()),
+                SharedPrefsUtils.getStringPreference(getActivity(), "SERVICE_SELECTED", 0),
+                "pending"
+        );
 
-        metadata.put("applicationId", key);
-        metadata.put("UserId", FirebaseAuth.getInstance().getUid());
-        metadata.put("date", new SimpleDateFormat("dd MMMM yyyy").format(new Date()));
-        metadata.put("status", "pending");
-        metadata.put("service", SharedPrefsUtils.getStringPreference(getActivity(), "SERVICE_SELECTED", 0));
         reference.child(FirebaseAuth.getInstance().getUid())
                 .child(key)
                 .setValue(
@@ -244,10 +248,10 @@ public class VendorFragment extends Fragment {
                         bankDetailsModel,
                         identityProofModel,
                         currentAddressModel,
-                        personalDetailModel
+                        personalDetailModel,
+                        metadata
                 )
         ).addOnSuccessListener(aVoid -> {
-            reference.child(FirebaseAuth.getInstance().getUid()).child(key).child("metadata/").setValue(metadata);
             progressBar.setVisibility(View.GONE);
             sendProfileForVerification.setText("successfully send");
             SharedPrefsUtils.setBooleanPreference(getActivity(), "APPLICATION_ALREADY_EXIST",  true);

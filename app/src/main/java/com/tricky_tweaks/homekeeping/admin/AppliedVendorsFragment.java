@@ -73,6 +73,7 @@ public class AppliedVendorsFragment extends Fragment {
                         if (vdm != null) {
                             arrayList.add(vdm);
                             adapter.notifyDataSetChanged();
+                            Log.e("Applied vendometa test ", vdm.getMetadata().toString()+"");
                         }
                     }
                     adapter.notifyDataSetChanged();

@@ -7,14 +7,16 @@ public class VendorDataModel implements Serializable {
     private CurrentAddressModel currentAddressModel;
     private IdentityProofModel identityProofModel;
     private PersonalDetailModel personalDetailModel;
+    private Metadata metadata;
 
     public VendorDataModel() {}
 
-    public VendorDataModel(BankDetailsModel bankDetailsModel, IdentityProofModel identityProofModel, CurrentAddressModel currentAddressModel, PersonalDetailModel personalDetailModel) {
+    public VendorDataModel(BankDetailsModel bankDetailsModel, IdentityProofModel identityProofModel, CurrentAddressModel currentAddressModel, PersonalDetailModel personalDetailModel, Metadata metadata) {
         this.bankDetailsModel = bankDetailsModel;
         this.identityProofModel = identityProofModel;
         this.currentAddressModel = currentAddressModel;
         this.personalDetailModel = personalDetailModel;
+        this.metadata = metadata;
     }
 
     public BankDetailsModel getBankDetailsModel() {
@@ -49,5 +51,11 @@ public class VendorDataModel implements Serializable {
         this.personalDetailModel = personalDetailModel;
     }
 
+    public Metadata getMetadata() {
+        return metadata;
+    }
 
+    public void setMetadata(Metadata metadata) {
+        this.metadata = metadata;
+    }
 }
