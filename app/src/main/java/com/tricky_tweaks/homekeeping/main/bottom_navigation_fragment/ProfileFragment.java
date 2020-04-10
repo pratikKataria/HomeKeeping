@@ -49,8 +49,8 @@ public class ProfileFragment extends Fragment {
 
         MaterialButton materialButton = view.findViewById(R.id.moderator);
         materialButton.setOnClickListener(n -> {
-            _navController.navigate(R.id.action_profileFragment_to_adminFragment);
-//            showAlertDialog();
+//            _navController.navigate(R.id.action_profileFragment_to_adminFragment);
+            showAlertDialog();
         });
 
         return view;

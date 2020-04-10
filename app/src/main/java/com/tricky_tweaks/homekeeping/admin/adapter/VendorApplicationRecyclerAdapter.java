@@ -1,6 +1,7 @@
 package com.tricky_tweaks.homekeeping.admin.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,6 +120,8 @@ public class VendorApplicationRecyclerAdapter extends RecyclerView.Adapter<Recyc
         }
 
         void setStatus(Metadata metadata) {
+            if (metadata.getStatus().equals("accepted"))
+                statusTextView.setTextColor(Color.GREEN);
             statusTextView.setText(metadata.getStatus());
         }
 
