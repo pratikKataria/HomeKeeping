@@ -12,11 +12,28 @@
             type="com.tricky_tweaks.homekeeping.model.CurrentAddressModel" />
         
     </data>
-    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_navigation"
+        android:backgroundTint="#EBCCFF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="12dp"
+            android:text="Address Details"
+            android:textColor="#9A00FF" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="@drawable/bg_navigation"
+        android:backgroundTint="@color/white">
 
         <LinearLayout
             android:id="@+id/linearLayout3"
@@ -30,6 +47,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawableStart="@drawable/ic_house"
+                android:gravity="center"
+                android:drawablePadding="8dp"
+                android:drawableTint="#9A00FF"
                 android:text="House No / FlatNo " />
 
             <TextView
@@ -37,6 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/colorBlack"
                 android:layout_marginTop="8dp"
                 android:text="@{currentAddressDetails.houseNumber}" />
         </LinearLayout>
@@ -58,6 +80,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_weight="1"
+                android:drawableStart="@drawable/ic_house"
+                android:gravity="center"
+                android:drawablePadding="8dp"
+                android:drawableTint="#9A00FF"
                 android:text="Street / Locality / Colony  " />
 
             <TextView
@@ -65,7 +91,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:layout_weight="1"
+                android:layout_weight="1"                android:textColor="@color/colorBlack"
+
                 android:text="@{currentAddressDetails.locality}" />
         </LinearLayout>
 
@@ -83,7 +110,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_weight="1"
-
+                android:drawableStart="@drawable/ic_fiber_pin_black_24dp"
+                android:gravity="center"
+                android:drawablePadding="8dp"
+                android:drawableTint="#9A00FF"
                 android:text="Area Pincode " />
 
             <TextView
@@ -91,7 +121,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:layout_weight="1"
+                android:layout_weight="1"                android:textColor="@color/colorBlack"
+
                 android:text="@{currentAddressDetails.pincode}" />
         </LinearLayout>
 
@@ -109,7 +140,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_weight="1"
-
+                android:drawableStart="@drawable/ic_location_city"
+                android:gravity="center"
+                android:drawablePadding="8dp"
+                android:drawableTint="#9A00FF"
                 android:text="city " />
 
             <TextView
@@ -118,6 +152,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_weight="1"
+                android:textColor="@color/colorBlack"
 
                 android:text="@{currentAddressDetails.city}" />
         </LinearLayout>
@@ -136,7 +171,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_weight="1"
-
+                android:drawableStart="@drawable/ic_state"
+                android:gravity="center"
+                android:drawablePadding="8dp"
+                android:drawableTint="#9A00FF"
                 android:text="State " />
 
             <TextView
@@ -144,10 +182,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:layout_weight="1"
+                android:layout_weight="1"                android:textColor="@color/colorBlack"
+
                 android:text="@{currentAddressDetails.state}"  />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>
 

@@ -1,4 +1,3 @@
-
 package com.tricky_tweaks.homekeeping.main.utils;
 
 import android.content.Context;

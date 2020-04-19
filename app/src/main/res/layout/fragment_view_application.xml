@@ -31,12 +31,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="25dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Address Details"
-                android:layout_gravity="center"/>
-
             <include layout="@layout/layout_address_details"
                 bind:currentAddressDetails="@{vendorDataModel.currentAddressModel}"/>
 
@@ -44,24 +38,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="25dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Banking Details"
-                android:layout_gravity="center"/>
-
             <include layout="@layout/layout_banking_details"
                 bind:bankDetails="@{vendorDataModel.bankDetailsModel}"/>
 
             <androidx.legacy.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="25dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Identity proof"
-                android:layout_gravity="center"/>
 
             <include layout="@layout/layout_id_proof"
                 bind:identityProofDetails="@{vendorDataModel.identityProofModel}"/>

@@ -1,5 +1,6 @@
 package com.tricky_tweaks.homekeeping.admin;
 
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.google.android.material.button.MaterialButton;
 import com.tricky_tweaks.homekeeping.R;
@@ -31,7 +33,7 @@ public class AdminFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_admin, container, false);
 
-        MaterialButton viewAllVendors = view.findViewById(R.id.id_mb_applied_vends);
+        ImageButton viewAllVendors = view.findViewById(R.id.id_mb_applied_vends);
         viewAllVendors.setOnClickListener(n -> _navController.navigate(R.id.action_adminFragment_to_appliedVendorsFragment));
 
         return view;

@@ -9,4 +9,7 @@
     <color name="green">#38D316</color>
     <color name="red">#FF0000</color>
 
+    <color name="lightWeightGrey">#F8F7F7</color>
+    <color name="grey">#939393</color>
+
 </resources>

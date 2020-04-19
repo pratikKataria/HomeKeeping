@@ -1,82 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    android:padding="8dp"
     android:layout_height="wrap_content">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/linearLayout12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_person_black_24dp"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="Name " />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_credit_card_black_24dp"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="Aadhar Number" />
+
+        <TextView
+            android:id="@+id/pd_aadhaar_card_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="aad no"            android:layout_marginStart="8dp"
+
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_credit_card_black_24dp"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="PAN Number" />
+
+        <TextView
+            android:id="@+id/pd_pan_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pan no"            android:layout_marginStart="8dp"
+
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_person_black_24dp"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="Father Name" />
+
+        <TextView
+            android:id="@+id/pd_f_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="father Name"            android:layout_marginStart="8dp"
+
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/pd_dob2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_date_range_black_24dp"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="Date of Birth" />
+
+        <TextView
+            android:id="@+id/pd_dob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date of Birth"            android:layout_marginStart="8dp"
+
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/pd_gender2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_gender"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="gender" />
+
+        <TextView
+            android:id="@+id/pd_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="gender"            android:layout_marginStart="8dp"
+
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/status"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="pending"
-        android:textColor="@color/red"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center"
+        android:text="pending" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/status" />
+        android:layout_gravity="center"
+        android:text="tap to view information" />
 
-    <TextView
-        android:id="@+id/pd_aadhaar_card_no"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="aad no"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey" />
 
-    <TextView
-        android:id="@+id/pd_pan_no"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="pan no"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pd_aadhaar_card_no" />
 
-    <TextView
-        android:id="@+id/pd_f_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="aad no"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pd_pan_no" />
-
-    <TextView
-        android:id="@+id/pd_dob"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="aad no"
-        app:layout_constraintBottom_toBottomOf="@+id/pd_f_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/pd_f_name" />
-
-    <TextView
-        android:id="@+id/pd_gender"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:text="gender"
-        app:layout_constraintEnd_toStartOf="@+id/pd_dob"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/pd_f_name"
-        app:layout_constraintTop_toBottomOf="@+id/pd_dob" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

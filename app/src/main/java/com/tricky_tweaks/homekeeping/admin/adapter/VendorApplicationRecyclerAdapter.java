@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.button.MaterialButton;
 import com.tricky_tweaks.homekeeping.R;
 import com.tricky_tweaks.homekeeping.model.Metadata;
 import com.tricky_tweaks.homekeeping.model.PersonalDetailModel;
@@ -79,7 +80,7 @@ public class VendorApplicationRecyclerAdapter extends RecyclerView.Adapter<Recyc
         TextView genderTextView;
         TextView dobTextView;
         TextView fatherNameTextView;
-        TextView statusTextView;
+        MaterialButton statusTextView;
 
         public VendorCardViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
@@ -120,8 +121,6 @@ public class VendorApplicationRecyclerAdapter extends RecyclerView.Adapter<Recyc
         }
 
         void setStatus(Metadata metadata) {
-            if (metadata.getStatus().equals("accepted"))
-                statusTextView.setTextColor(Color.GREEN);
             statusTextView.setText(metadata.getStatus());
         }
 
