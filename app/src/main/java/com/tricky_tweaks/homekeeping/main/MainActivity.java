@@ -1,30 +1,18 @@
 package com.tricky_tweaks.homekeeping.main;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firestore.v1.StructuredQuery;
 import com.tricky_tweaks.homekeeping.R;
-import com.tricky_tweaks.homekeeping.main.bottom_navigation_fragment.HomeFragment;
-import com.tricky_tweaks.homekeeping.main.bottom_navigation_fragment.OrdersFragment;
-import com.tricky_tweaks.homekeeping.main.bottom_navigation_fragment.ProfileFragment;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import me.ibrahimsn.lib.OnItemSelectedListener;
-import me.ibrahimsn.lib.SmoothBottomBar;
+import com.tricky_tweaks.homekeeping.binding.IVendorApplication;
+import com.tricky_tweaks.homekeeping.model.VendorDataModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -59,5 +47,4 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 }

@@ -1,17 +1,27 @@
 package com.tricky_tweaks.homekeeping.admin.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavHost;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.tricky_tweaks.homekeeping.R;
+import com.tricky_tweaks.homekeeping.admin.AppliedVendorsFragment;
+import com.tricky_tweaks.homekeeping.binding.IVendorApplication;
+import com.tricky_tweaks.homekeeping.databinding.CardviewVendorsBinding;
+import com.tricky_tweaks.homekeeping.databinding.FragmentAppliedVendorsBinding;
 import com.tricky_tweaks.homekeeping.model.Metadata;
 import com.tricky_tweaks.homekeeping.model.PersonalDetailModel;
 import com.tricky_tweaks.homekeeping.model.VendorDataModel;
@@ -41,9 +51,13 @@ public class VendorApplicationRecyclerAdapter extends RecyclerView.Adapter<Recyc
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder holder;
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_vendors, parent, false);
+        CardviewVendorsBinding binding = CardviewVendorsBinding.inflate(
+                LayoutInflater.from(parent.getContext()),
+                parent,
+                false
+        );
 
-        holder = new VendorCardViewHolder(view, listener);
+        holder = new VendorCardViewHolder(binding, listener);
 
         return holder;
     }
@@ -54,16 +68,15 @@ public class VendorApplicationRecyclerAdapter extends RecyclerView.Adapter<Recyc
 
         PersonalDetailModel personalDetailModel = vendorDataModelList.get(position).getPersonalDetailModel();
 
-        vendorCardViewHolder.setCardView(
-                personalDetailModel.getName(),
-                personalDetailModel.getAadharNo(),
-                personalDetailModel.getPanNo(),
-                personalDetailModel.getGender(),
-                personalDetailModel.getDob(),
-                personalDetailModel.getFatherName()
-        );
+        vendorCardViewHolder.setBinding(personalDetailModel);
+
+        NavHostFragment hostFragment = (NavHostFragment) ((AppCompatActivity)context).getSupportFragmentManager().findFragmentById(R.id.activity_main_nav_host);
+        Fragment currFragment = hostFragment.getChildFragmentManager().getFragments().get(0);
+        vendorCardViewHolder.cardViewBinding.setVendorData(vendorDataModelList.get(position));
+        vendorCardViewHolder.cardViewBinding.setIVendorApplication((AppliedVendorsFragment)currFragment);
 
         vendorCardViewHolder.setStatus(vendorDataModelList.get(position).getMetadata());
+        vendorCardViewHolder.cardViewBinding.executePendingBindings();
     }
 
     @Override
@@ -74,26 +87,15 @@ public class VendorApplicationRecyclerAdapter extends RecyclerView.Adapter<Recyc
 
     static class VendorCardViewHolder extends RecyclerView.ViewHolder {
 
-        TextView nameTextView;
-        TextView aadharNoTextView;
-        TextView panNoTextView;
-        TextView genderTextView;
-        TextView dobTextView;
-        TextView fatherNameTextView;
         MaterialButton statusTextView;
+        CardviewVendorsBinding cardViewBinding;
 
-        public VendorCardViewHolder(@NonNull View itemView, OnItemClickListener listener) {
-            super(itemView);
+        public VendorCardViewHolder(@NonNull CardviewVendorsBinding itemView, OnItemClickListener listener) {
+            super(itemView.getRoot());
+            cardViewBinding = itemView;
 
-            nameTextView = itemView.findViewById(R.id.name);
-            aadharNoTextView = itemView.findViewById(R.id.pd_aadhaar_card_no);
-            panNoTextView = itemView.findViewById(R.id.pd_pan_no);
-            genderTextView = itemView.findViewById(R.id.pd_gender);
-            dobTextView = itemView.findViewById(R.id.pd_dob);
-            fatherNameTextView = itemView.findViewById(R.id.pd_f_name);
-            statusTextView = itemView.findViewById(R.id.status);
-
-            itemView.setOnClickListener(v -> {
+            statusTextView = cardViewBinding.status;
+            itemView.getRoot().setOnClickListener(v -> {
                 if (listener != null) {
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
@@ -104,20 +106,8 @@ public class VendorApplicationRecyclerAdapter extends RecyclerView.Adapter<Recyc
 
         }
 
-        void setCardView(
-                String name,
-                String aadharNo,
-                String panNo,
-                String gender,
-                String dob,
-                String fatherName
-                ) {
-            nameTextView.setText(name);
-            aadharNoTextView.setText(aadharNo);
-            panNoTextView.setText(panNo);
-            genderTextView.setText(gender);
-            dobTextView.setText(dob);
-            fatherNameTextView.setText(fatherName);
+        void setBinding(PersonalDetailModel personalInfo) {
+            cardViewBinding.setPersonalInfo(personalInfo);
         }
 
         void setStatus(Metadata metadata) {
