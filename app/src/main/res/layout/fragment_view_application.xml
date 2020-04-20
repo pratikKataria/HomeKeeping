@@ -48,13 +48,22 @@
             <include layout="@layout/layout_id_proof"
                 bind:identityProofDetails="@{vendorDataModel.identityProofModel}"/>
 
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/colorBlack"
+                android:visibility="gone"/>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAccept"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
-                android:text="accept"/>
+                android:enabled="@{!vendorDataModel.metadata.status.equalsIgnoreCase(`accepted`)}"
+                android:text="@{vendorDataModel.metadata.status.equalsIgnoreCase(`accepted`)? `accepted` : `accept`}"/>
         </LinearLayout>
     </ScrollView>
 </layout>

@@ -11,6 +11,11 @@ public class VendorDataModel implements Serializable {
 
     public VendorDataModel() {}
 
+    public VendorDataModel(Metadata metadata, CurrentAddressModel currentAddressModel) {
+        this.currentAddressModel = currentAddressModel;
+        this.metadata = metadata;
+    }
+
     public VendorDataModel(BankDetailsModel bankDetailsModel, IdentityProofModel identityProofModel, CurrentAddressModel currentAddressModel, PersonalDetailModel personalDetailModel, Metadata metadata) {
         this.bankDetailsModel = bankDetailsModel;
         this.identityProofModel = identityProofModel;

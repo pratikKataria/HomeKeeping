@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.tricky_tweaks.homekeeping.model.Branch"/>
+
+        <variable
+            name="branch"
+            type="Branch" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{branch.branchName}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

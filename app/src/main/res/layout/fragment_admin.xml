@@ -66,7 +66,7 @@
                         android:id="@+id/id_mb_applied_vends"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
-                        android:src="@drawable/ic_applications"
+                        android:src="@drawable/ic_view_doc"
                         android:background="?attr/selectableItemBackgroundBorderless"/>
 
                     <TextView
@@ -86,9 +86,10 @@
                     android:orientation="vertical">
 
                     <ImageButton
+                        android:id="@+id/viewCompany"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
-                        android:src="@drawable/ic_companies"
+                        android:src="@drawable/ic_view_comp"
                         android:background="?attr/selectableItemBackgroundBorderless"/>
 
                     <TextView
@@ -96,7 +97,30 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:gravity="center"
-                        android:text="companay" />
+                        android:text="Company" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/addComp"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:src="@drawable/ic_add_comp"
+                        android:background="?attr/selectableItemBackgroundBorderless"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:text="Add Company" />
 
                 </LinearLayout>
 

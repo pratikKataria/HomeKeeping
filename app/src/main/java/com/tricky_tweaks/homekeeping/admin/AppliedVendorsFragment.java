@@ -57,7 +57,7 @@ public class AppliedVendorsFragment extends Fragment implements IVendorApplicati
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("VendorApplications");
 
         Query query = reference.limitToLast(10);
-
+        query.keepSynced(true);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

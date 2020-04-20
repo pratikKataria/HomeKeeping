@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.google.android.material.button.MaterialButton;
 import com.tricky_tweaks.homekeeping.R;
@@ -35,6 +36,12 @@ public class AdminFragment extends Fragment {
 
         ImageButton viewAllVendors = view.findViewById(R.id.id_mb_applied_vends);
         viewAllVendors.setOnClickListener(n -> _navController.navigate(R.id.action_adminFragment_to_appliedVendorsFragment));
+
+        ImageButton addCompBtn = view.findViewById(R.id.addComp);
+        addCompBtn.setOnClickListener(n -> _navController.navigate(R.id.action_adminFragment_to_addCompanyFragment));
+
+        ImageButton viewCompanies = view.findViewById(R.id.viewCompany);
+        viewCompanies.setOnClickListener(n -> _navController.navigate(R.id.action_adminFragment_to_viewCompaniesFragment));
 
         return view;
     }

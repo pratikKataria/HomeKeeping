@@ -1,10 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/lightWeightGrey"
+    tools:context=".main.vendor_details_fragment.IdentityProofFragment"
     android:orientation="vertical"
-    tools:context=".main.vendor_details_fragment.IdentityProofFragment">
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp">
+
+        <ImageButton
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@drawable/ic_back_btn"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Identity Proof"
+            android:textSize="24dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginEnd="34dp"
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_navigation"
+        android:backgroundTint="@color/white"
+        android:padding="16dp"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -97,5 +132,5 @@
         android:text="verify"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"/>
-
+    </LinearLayout>
 </LinearLayout>
