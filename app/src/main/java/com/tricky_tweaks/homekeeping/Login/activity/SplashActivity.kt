@@ -4,7 +4,6 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.util.Pair
 import android.view.View
 import android.widget.ImageView
@@ -13,8 +12,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.tricky_tweaks.homekeeping.main.MainActivity
 import com.tricky_tweaks.homekeeping.R
+import com.tricky_tweaks.homekeeping.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -33,30 +32,30 @@ class SplashActivity : AppCompatActivity() {
 
 //        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
 
-
-        Handler().postDelayed({
             if (FirebaseAuth.getInstance().uid != null) {
                 checkUserData()
             } else {
                 sendUserToLogin()
             }
-        }, 1000)
 
     }
 
     private fun checkUserData() {
-        Log.e("OTp activity ", "checkUserData ")
-        val ref: DatabaseReference = FirebaseDatabase.getInstance()
-            .getReference("Users/" + FirebaseAuth.getInstance().uid)
-        ref.addValueEventListener(object : ValueEventListener {
+        val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users/" + FirebaseAuth.getInstance().uid)
+        ref.keepSynced(true)
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-                    Log.e("OTp activity ", "checkUserData $dataSnapshot")
+                    Handler().postDelayed( {
+                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                        finish()
+                    }, 1500)
                 } else {
-                    startActivity(Intent(this@SplashActivity, CustomerProfileInfoActivity::class.java))
-                    Log.e("OTp activity ", "checkUserData $dataSnapshot")
-                    finish()
+                    Handler().postDelayed( {
+                        startActivity(Intent(this@SplashActivity, CustomerProfileInfoActivity::class.java))
+                        finish()
+                    }, 1000)
+
                 }
             }
 
@@ -64,6 +63,7 @@ class SplashActivity : AppCompatActivity() {
         })
     }
 
+    //shared element animation
     fun sendUserToLogin() {
         val intent = Intent(this@SplashActivity, LoginActivity::class.java)
         val pairs: Array<Pair<View, String>> =

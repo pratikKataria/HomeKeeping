@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
@@ -22,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_otp.*
 class OtpActivity : AppCompatActivity() {
 
     var mAuth = FirebaseAuth.getInstance()
-    private lateinit var editTextOtp: EditText
+    private lateinit var editTextOtp: TextInputEditText
     private lateinit var verifyBtn: MaterialButton
 
     private var doubleBackToExitPressedOnce = false
@@ -41,13 +42,13 @@ class OtpActivity : AppCompatActivity() {
         val AuthCredential : String = intent.getStringExtra("AuthCredentials")
 
         activity_otp_mb_submit_otp.setOnClickListener {
-            if (editTextOtp.text.isEmpty()) {
+            if (editTextOtp.text!!.isEmpty()) {
                 editTextOtp.error = "should not be empty"
                 editTextOtp.requestFocus()
                 return@setOnClickListener
             }
 
-            if (editTextOtp.text.length < 6) {
+            if (editTextOtp.text!!.length < 6) {
                 editTextOtp.error = "invalid"
                 editTextOtp.requestFocus()
                 return@setOnClickListener
@@ -82,28 +83,21 @@ class OtpActivity : AppCompatActivity() {
 
     private fun sendUserToHome() {
         val homeIntent = Intent(this@OtpActivity, MainActivity::class.java)
-        homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(homeIntent)
         finish()
     }
 
     private fun checkUserData() {
-        Log.e("OTp activity ", "checkUserData ")
-        val ref: DatabaseReference = FirebaseDatabase.getInstance()
-            .getReference("Customers/" + FirebaseAuth.getInstance().uid)
-        ref.addValueEventListener(object : ValueEventListener {
+        val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users/" + FirebaseAuth.getInstance().uid)
+            ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    Log.e("OTp activity ", "checkUserData $dataSnapshot")
                     sendUserToHome()
                 } else {
-                    Log.e("OTp activity ", "checkUserData $dataSnapshot")
                     startActivity(Intent(this@OtpActivity, CustomerProfileInfoActivity::class.java))
                     finish()
                 }
             }
-
             override fun onCancelled(databaseError: DatabaseError) {}
         })
     }
