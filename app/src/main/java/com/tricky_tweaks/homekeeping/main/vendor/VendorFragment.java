@@ -28,11 +28,11 @@ import com.google.gson.Gson;
 import com.tricky_tweaks.homekeeping.R;
 import com.tricky_tweaks.homekeeping.main.utils.SharedPrefsUtils;
 import com.tricky_tweaks.homekeeping.main.utils.UploadImageUtils;
-import com.tricky_tweaks.homekeeping.model.BankDetailsModel;
-import com.tricky_tweaks.homekeeping.model.CurrentAddressModel;
-import com.tricky_tweaks.homekeeping.model.IdentityProofModel;
-import com.tricky_tweaks.homekeeping.model.Metadata;
-import com.tricky_tweaks.homekeeping.model.PersonalDetailModel;
+import com.tricky_tweaks.homekeeping.model.vendors.BankDetailsModel;
+import com.tricky_tweaks.homekeeping.model.vendors.CurrentAddressModel;
+import com.tricky_tweaks.homekeeping.model.vendors.IdentityProofModel;
+import com.tricky_tweaks.homekeeping.model.vendors.Metadata;
+import com.tricky_tweaks.homekeeping.model.vendors.PersonalDetailModel;
 import com.tricky_tweaks.homekeeping.model.VendorDataModel;
 
 import java.io.File;
@@ -41,8 +41,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class VendorFragment extends Fragment {

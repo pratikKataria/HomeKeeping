@@ -21,7 +21,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 import com.tricky_tweaks.homekeeping.R;
 import com.tricky_tweaks.homekeeping.main.utils.SharedPrefsUtils;
-import com.tricky_tweaks.homekeeping.model.PersonalDetailModel;
+import com.tricky_tweaks.homekeeping.model.vendors.PersonalDetailModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

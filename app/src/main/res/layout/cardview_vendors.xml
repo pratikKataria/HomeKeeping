@@ -6,7 +6,7 @@
 
         <import type="com.tricky_tweaks.homekeeping.binding.IVendorApplication"/>
 
-        <import type="com.tricky_tweaks.homekeeping.model.PersonalDetailModel" />
+        <import type="com.tricky_tweaks.homekeeping.model.vendors.PersonalDetailModel" />
 
         <variable
             name="iVendorApplication"
@@ -14,7 +14,7 @@
 
         <variable
             name="personalInfo"
-            type="PersonalDetailModel" />
+            type="com.tricky_tweaks.homekeeping.model.vendors.PersonalDetailModel" />
 
         <variable
             name="vendorData"

@@ -1,7 +1,6 @@
 package com.tricky_tweaks.homekeeping.admin.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -9,8 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tricky_tweaks.homekeeping.databinding.CardViewCompanyInfoBinding;
-import com.tricky_tweaks.homekeeping.model.Branch;
-import com.tricky_tweaks.homekeeping.model.CompanyInfoModel;
+import com.tricky_tweaks.homekeeping.model.company.Branch;
+import com.tricky_tweaks.homekeeping.model.company.CompanyInfoModel;
 
 import java.util.ArrayList;
 

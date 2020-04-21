@@ -7,7 +7,7 @@
 
         <import type="com.tricky_tweaks.homekeeping.binding.IVendorApplication"/>
         <import type="java.util.List"/>
-        <import type="com.tricky_tweaks.homekeeping.model.CompanyInfoModel"/>
+        <import type="com.tricky_tweaks.homekeeping.model.company.CompanyInfoModel"/>
 
         <variable
             name="branch"
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/lightWeightGrey"
-        tools:context=".ViewCompaniesFragment"
+        tools:context=".admin.ViewCompaniesFragment"
         android:orientation="vertical">
 
         <LinearLayout

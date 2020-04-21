@@ -1,4 +1,4 @@
-package com.tricky_tweaks.homekeeping.main.vendor;
+package com.tricky_tweaks.homekeeping.main;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -21,8 +21,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.tricky_tweaks.homekeeping.R;
 import com.tricky_tweaks.homekeeping.databinding.FragmentViewApplicationBinding;
-import com.tricky_tweaks.homekeeping.model.Metadata;
 import com.tricky_tweaks.homekeeping.model.VendorDataModel;
+import com.tricky_tweaks.homekeeping.model.vendors.Metadata;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ViewApplicationFragment extends Fragment {
 
@@ -58,7 +61,7 @@ public class ViewApplicationFragment extends Fragment {
                     .setValue(metadata)
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(getActivity(), "application accepted", Toast.LENGTH_SHORT).show();
-                        addToVendors();
+                        addVendor();
                     })
                     .addOnFailureListener(e -> {
                         Toast.makeText(getActivity(), "failed to accept " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -67,26 +70,24 @@ public class ViewApplicationFragment extends Fragment {
         }
     }
 
-    private void addToVendors() {
+    private void addVendor() {
         if (vendorDataModel != null) {
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Vendors");
             reference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    reference.child(vendorDataModel.getMetadata().getUserId()).setValue(
+                    String userId = vendorDataModel.getMetadata().getUserId();
+                    reference.child(userId).setValue(
                             new VendorDataModel(
                                     vendorDataModel.getMetadata(),
                                     vendorDataModel.getCurrentAddressModel()
                             )
                     ).addOnSuccessListener(aVoid -> {
-                        Toast.makeText(getActivity(), "application accepted", Toast.LENGTH_SHORT).show();
-                        progressBar.setVisibility(View.GONE);
-
-                    })
-                            .addOnFailureListener(e -> {
+                        linkService();
+                    }).addOnFailureListener(e -> {
                                 Toast.makeText(getActivity(), "failed to accept " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                 progressBar.setVisibility(View.GONE);
-                            });
+                    });
                 }
 
                 @Override
@@ -96,6 +97,25 @@ public class ViewApplicationFragment extends Fragment {
             });
 
         }
+    }
+
+    private void linkService() {
+        String service = vendorDataModel.getMetadata().getService();
+        String vendorId = vendorDataModel.getMetadata().getUserId();
+        Map<String, String> data = new HashMap<>();
+        data.put(vendorId, vendorId);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Services/");
+        reference.child(service).setValue(
+                data
+        ).addOnSuccessListener(aVoid -> {
+            Toast.makeText(getActivity(), "application accepted", Toast.LENGTH_SHORT).show();
+            progressBar.setVisibility(View.GONE);
+            getActivity().onBackPressed();
+
+        }).addOnFailureListener(e -> {
+            Toast.makeText(getActivity(), "failed to accept " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            progressBar.setVisibility(View.GONE);
+        });
     }
 
     @Override

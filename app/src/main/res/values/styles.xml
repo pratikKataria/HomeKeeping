@@ -21,4 +21,8 @@
         <item name="strokeColor">@color/red</item>
     </style>
 
+    <style name="checkBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="buttonTint">@color/colorPurple</item>
+    </style>
+
 </resources>

@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <import type="java.util.List"/>
-        <import type="com.tricky_tweaks.homekeeping.model.vendors.PersonalDetailModel"/>
-        <import type="com.tricky_tweaks.homekeeping.model.VendorDataModel"/>
-        
-        <variable
-            name="vendorData"
-            type="List&lt;VendorDataModel>"/>
-
-    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/lightWeightGrey"
-        tools:context=".admin.AppliedVendorsFragment"
+        tools:context=".admin.MultipleServiceFragment"
         android:orientation="vertical">
 
         <LinearLayout
@@ -46,19 +36,36 @@
                 android:textColor="@color/colorBlack"/>
         </LinearLayout>
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_navigation"
-            android:backgroundTint="@color/white"
-            android:padding="16dp"
-            app:vendorApplicationList="@{vendorData}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            android:orientation="vertical"
+            android:background="@drawable/bg_navigation">
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="200dp"
+                android:layout_margin="8dp"
+                android:padding="16dp"
+                android:orientation="vertical">
+            </LinearLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nextBtn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:cornerRadius="8dp"
+                android:text="next"/>
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</layout>
-
+</ScrollView>

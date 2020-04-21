@@ -22,7 +22,7 @@ import com.google.gson.Gson;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.tricky_tweaks.homekeeping.R;
 import com.tricky_tweaks.homekeeping.main.utils.SharedPrefsUtils;
-import com.tricky_tweaks.homekeeping.model.IdentityProofModel;
+import com.tricky_tweaks.homekeeping.model.vendors.IdentityProofModel;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -1,4 +1,9 @@
 package com.tricky_tweaks.homekeeping.model;
+import com.tricky_tweaks.homekeeping.model.vendors.BankDetailsModel;
+import com.tricky_tweaks.homekeeping.model.vendors.CurrentAddressModel;
+import com.tricky_tweaks.homekeeping.model.vendors.IdentityProofModel;
+import com.tricky_tweaks.homekeeping.model.vendors.Metadata;
+import com.tricky_tweaks.homekeeping.model.vendors.PersonalDetailModel;
 
 import java.io.Serializable;
 

@@ -11,8 +11,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.tricky_tweaks.homekeeping.R;
-import com.tricky_tweaks.homekeeping.binding.IVendorApplication;
-import com.tricky_tweaks.homekeeping.model.VendorDataModel;
 
 public class MainActivity extends AppCompatActivity {
 

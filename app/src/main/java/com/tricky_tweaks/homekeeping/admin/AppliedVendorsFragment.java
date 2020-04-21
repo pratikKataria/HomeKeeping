@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,7 +18,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.tricky_tweaks.homekeeping.R;
-import com.tricky_tweaks.homekeeping.admin.adapter.VendorApplicationRecyclerAdapter;
 import com.tricky_tweaks.homekeeping.binding.IVendorApplication;
 import com.tricky_tweaks.homekeeping.databinding.FragmentAppliedVendorsBinding;
 import com.tricky_tweaks.homekeeping.model.VendorDataModel;

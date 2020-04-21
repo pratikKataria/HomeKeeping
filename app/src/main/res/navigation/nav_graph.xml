@@ -144,15 +144,17 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"/>
         <action
-            android:id="@+id/action_adminFragment_to_addCompanyFragment"
-            app:destination="@id/addCompanyFragment"
-            app:popEnterAnim="@anim/slide_in_left"
+            android:id="@+id/action_adminFragment_to_viewCompaniesFragment"
+            app:destination="@id/viewCompaniesFragment" app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"/>
+            app:exitAnim="@anim/slide_out_left" />
         <action
-            android:id="@+id/action_adminFragment_to_viewCompaniesFragment"
-            app:destination="@id/viewCompaniesFragment" />
+            android:id="@+id/action_adminFragment_to_multipleServiceFragment"
+            app:destination="@id/multipleServiceFragment" app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/appliedVendorsFragment"
@@ -187,7 +189,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewApplicationFragment"
-        android:name="com.tricky_tweaks.homekeeping.main.vendor.ViewApplicationFragment"
+        android:name="com.tricky_tweaks.homekeeping.main.ViewApplicationFragment"
         android:label="fragment_view_application"
         tools:layout="@layout/fragment_view_application" >
         <argument
@@ -199,15 +201,28 @@
     </fragment>
     <fragment
         android:id="@+id/addCompanyFragment"
-        android:name="com.tricky_tweaks.homekeeping.AddCompanyFragment"
+        android:name="com.tricky_tweaks.homekeeping.admin.AddCompanyFragment"
         android:label="fragment_company_activity"
         tools:layout="@layout/fragment_add_company_activity">
     </fragment>
     <fragment
         android:id="@+id/viewCompaniesFragment"
-        android:name="com.tricky_tweaks.homekeeping.ViewCompaniesFragment"
+        android:name="com.tricky_tweaks.homekeeping.admin.ViewCompaniesFragment"
         android:label="fragment_view_companies"
         tools:layout="@layout/fragment_view_companies" />
+    <fragment
+        android:id="@+id/multipleServiceFragment"
+        android:name="com.tricky_tweaks.homekeeping.admin.MultipleServiceFragment"
+        android:label="fragment_multiple_service"
+        tools:layout="@layout/fragment_multiple_service" >
+
+        <action
+            android:id="@+id/action_multipleServiceFragment_to_addCompanyFragment"
+            app:destination="@id/addCompanyFragment" app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
 
 
 </navigation>

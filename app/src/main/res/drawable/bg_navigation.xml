@@ -6,7 +6,7 @@
         android:topRightRadius="32dp"
         android:topLeftRadius="32dp"/>
 
-    <solid android:color="@color/colorPrimary"/>
+    <solid android:color="@color/white"/>
 
 
 

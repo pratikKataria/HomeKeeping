@@ -6,7 +6,7 @@
     <data>
         <variable
             name="personalData"
-            type="com.tricky_tweaks.homekeeping.model.PersonalDetailModel" />
+            type="com.tricky_tweaks.homekeeping.model.vendors.PersonalDetailModel" />
     </data>
 
     <LinearLayout

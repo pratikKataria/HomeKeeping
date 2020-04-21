@@ -38,7 +38,7 @@ public class AdminFragment extends Fragment {
         viewAllVendors.setOnClickListener(n -> _navController.navigate(R.id.action_adminFragment_to_appliedVendorsFragment));
 
         ImageButton addCompBtn = view.findViewById(R.id.addComp);
-        addCompBtn.setOnClickListener(n -> _navController.navigate(R.id.action_adminFragment_to_addCompanyFragment));
+        addCompBtn.setOnClickListener(n -> _navController.navigate(R.id.action_adminFragment_to_multipleServiceFragment));
 
         ImageButton viewCompanies = view.findViewById(R.id.viewCompany);
         viewCompanies.setOnClickListener(n -> _navController.navigate(R.id.action_adminFragment_to_viewCompaniesFragment));

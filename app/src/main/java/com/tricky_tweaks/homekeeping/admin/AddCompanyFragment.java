@@ -1,4 +1,4 @@
-package com.tricky_tweaks.homekeeping;
+package com.tricky_tweaks.homekeeping.admin;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -6,22 +6,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.tricky_tweaks.homekeeping.R;
 import com.tricky_tweaks.homekeeping.databinding.FragmentAddCompanyActivityBinding;
-import com.tricky_tweaks.homekeeping.model.Branch;
-import com.tricky_tweaks.homekeeping.model.BranchRepresentative;
-import com.tricky_tweaks.homekeeping.model.Company;
-import com.tricky_tweaks.homekeeping.model.CompanyInfoModel;
+import com.tricky_tweaks.homekeeping.model.company.Branch;
+import com.tricky_tweaks.homekeeping.model.company.BranchRepresentative;
+import com.tricky_tweaks.homekeeping.model.company.Company;
+import com.tricky_tweaks.homekeeping.model.company.CompanyInfoModel;
+import com.tricky_tweaks.homekeeping.model.company.MetaData;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddCompanyFragment extends Fragment {
 
     private FragmentAddCompanyActivityBinding binding;
-
+    private Map<String, String> serviceSelectedList;
 
 
     //company
@@ -43,6 +54,19 @@ public class AddCompanyFragment extends Fragment {
     private TextInputEditText _textViewRepPosition;
     private MaterialButton _mbSave;
 
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        ArrayList<String> list = (ArrayList<String>) getArguments().get("SERVICES_SELECTED");
+        serviceSelectedList = new HashMap<>();
+        if (list != null) {
+            for (String s : list) {
+                serviceSelectedList.put(s, s);
+            }
+        }
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -152,7 +176,7 @@ public class AddCompanyFragment extends Fragment {
     }
 
     private void saveCompanyInfo() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("CompanyInfo");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Companies");
         String key = reference.push().getKey();
 
         Company company = new Company(
@@ -177,11 +201,17 @@ public class AddCompanyFragment extends Fragment {
                 ""+ _textViewRepPosition.getText().toString()
         );
 
+        MetaData metadata = new MetaData(
+                new SimpleDateFormat("dd : MM : YYYY").format(new Date()),
+                serviceSelectedList
+        );
+
         CompanyInfoModel companyInfo = new CompanyInfoModel(
 
                 branch,
                 company,
-                representative
+                representative,
+                metadata
 
         );
 

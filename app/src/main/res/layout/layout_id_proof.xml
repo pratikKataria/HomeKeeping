@@ -7,7 +7,7 @@
 
         <variable
             name="identityProofDetails"
-            type="com.tricky_tweaks.homekeeping.model.IdentityProofModel" />
+            type="com.tricky_tweaks.homekeeping.model.vendors.IdentityProofModel" />
 
     </data>
 

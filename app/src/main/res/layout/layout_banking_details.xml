@@ -6,7 +6,7 @@
 
         <variable
             name="bankDetails"
-            type="com.tricky_tweaks.homekeeping.model.BankDetailsModel" />
+            type="com.tricky_tweaks.homekeeping.model.vendors.BankDetailsModel" />
 
     </data>
 

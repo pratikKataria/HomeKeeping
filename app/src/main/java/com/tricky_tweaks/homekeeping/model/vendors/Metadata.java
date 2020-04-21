@@ -1,4 +1,4 @@
-package com.tricky_tweaks.homekeeping.model;
+package com.tricky_tweaks.homekeeping.model.vendors;
 
 public class Metadata {
     private String userId;

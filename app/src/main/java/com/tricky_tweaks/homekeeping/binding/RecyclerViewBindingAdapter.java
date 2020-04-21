@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tricky_tweaks.homekeeping.admin.adapter.CompanyInfoRecyclerAdapter;
 import com.tricky_tweaks.homekeeping.admin.adapter.VendorApplicationRecyclerAdapter;
-import com.tricky_tweaks.homekeeping.model.CompanyInfoModel;
+import com.tricky_tweaks.homekeeping.model.company.CompanyInfoModel;
 import com.tricky_tweaks.homekeeping.model.VendorDataModel;
 
 import java.util.ArrayList;

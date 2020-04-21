@@ -2,28 +2,20 @@ package com.tricky_tweaks.homekeeping.admin.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavHost;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.tricky_tweaks.homekeeping.R;
 import com.tricky_tweaks.homekeeping.admin.AppliedVendorsFragment;
-import com.tricky_tweaks.homekeeping.binding.IVendorApplication;
 import com.tricky_tweaks.homekeeping.databinding.CardviewVendorsBinding;
-import com.tricky_tweaks.homekeeping.databinding.FragmentAppliedVendorsBinding;
-import com.tricky_tweaks.homekeeping.model.Metadata;
-import com.tricky_tweaks.homekeeping.model.PersonalDetailModel;
+import com.tricky_tweaks.homekeeping.model.vendors.Metadata;
+import com.tricky_tweaks.homekeeping.model.vendors.PersonalDetailModel;
 import com.tricky_tweaks.homekeeping.model.VendorDataModel;
 
 import java.util.ArrayList;

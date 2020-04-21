@@ -1,4 +1,4 @@
-package com.tricky_tweaks.homekeeping;
+package com.tricky_tweaks.homekeeping.admin;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,8 +14,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tricky_tweaks.homekeeping.R;
 import com.tricky_tweaks.homekeeping.databinding.FragmentViewCompaniesBinding;
-import com.tricky_tweaks.homekeeping.model.CompanyInfoModel;
+import com.tricky_tweaks.homekeeping.model.company.CompanyInfoModel;
 
 import java.util.ArrayList;
 import java.util.List;

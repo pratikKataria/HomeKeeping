@@ -4,11 +4,11 @@
 
     <data>
 
-        <import type="com.tricky_tweaks.homekeeping.model.Branch"/>
+        <import type="com.tricky_tweaks.homekeeping.model.company.Branch"/>
 
         <variable
             name="branch"
-            type="Branch" />
+            type="com.tricky_tweaks.homekeeping.model.company.Branch" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

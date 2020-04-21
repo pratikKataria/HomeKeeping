@@ -1,10 +1,13 @@
-package com.tricky_tweaks.homekeeping.model;
+package com.tricky_tweaks.homekeeping.model.company;
+
+import java.util.List;
 
 public class CompanyInfoModel {
     private HeadOffice headOffice;
     private Branch branch;
     private Company company;
     private BranchRepresentative representative;
+    private MetaData metaData;
 
     public CompanyInfoModel() {}
 
@@ -15,10 +18,11 @@ public class CompanyInfoModel {
         this.representative = representative;
     }
 
-    public CompanyInfoModel(Branch branch, Company company, BranchRepresentative representative) {
+    public CompanyInfoModel(Branch branch, Company company, BranchRepresentative representative, MetaData metaData) {
         this.branch = branch;
         this.company = company;
         this.representative = representative;
+        this.metaData = metaData;
     }
 
     public HeadOffice getHeadOffice() {
@@ -51,6 +55,14 @@ public class CompanyInfoModel {
 
     public void setRepresentative(BranchRepresentative representative) {
         this.representative = representative;
+    }
+
+    public MetaData getMetaData() {
+        return metaData;
+    }
+
+    public void setMetaData(MetaData metaData) {
+        this.metaData = metaData;
     }
 }
 

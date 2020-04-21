@@ -24,7 +24,7 @@ import com.google.gson.Gson;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.tricky_tweaks.homekeeping.R;
 import com.tricky_tweaks.homekeeping.main.utils.SharedPrefsUtils;
-import com.tricky_tweaks.homekeeping.model.BankDetailsModel;
+import com.tricky_tweaks.homekeeping.model.vendors.BankDetailsModel;
 
 import static android.app.Activity.RESULT_OK;
 

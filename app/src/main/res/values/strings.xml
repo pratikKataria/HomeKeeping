@@ -3,4 +3,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="customer_services">
+        <item>Electrician</item>
+        <item>Carpainter</item>
+        <item>Plumber</item>
+        <item>Air cooler repair</item>
+        <item>Cleaning</item>
+        <item>Air Conditioner Repair Service</item>
+
+    </string-array>
+
 </resources>

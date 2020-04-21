@@ -14,15 +14,17 @@
             android:theme="@style/Base.Theme.AppCompat"/>
         <activity android:name=".login.activity.CustomerProfileInfoActivity"/>
         <activity android:name=".login.activity.SplashActivity">
+
+        </activity>
+        <activity android:name=".login.activity.OtpActivity" />
+        <activity android:name=".login.activity.LoginActivity" />
+        <activity android:name=".main.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.activity.OtpActivity" />
-        <activity android:name=".login.activity.LoginActivity" />
-        <activity android:name=".main.MainActivity" />
     </application>
 
 </manifest>

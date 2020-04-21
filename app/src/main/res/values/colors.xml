@@ -12,4 +12,7 @@
     <color name="lightWeightGrey">#F8F7F7</color>
     <color name="grey">#939393</color>
 
+    <color name="colorPurple">#6600EB</color>
+    <color name="colorLightPurple">#E4D2FC</color>
+
 </resources>

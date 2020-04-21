@@ -9,7 +9,7 @@
         
         <variable
             name="currentAddressDetails"
-            type="com.tricky_tweaks.homekeeping.model.CurrentAddressModel" />
+            type="com.tricky_tweaks.homekeeping.model.vendors.CurrentAddressModel" />
         
     </data>
     <LinearLayout
