@@ -1,13 +1,13 @@
 package com.tricky_tweaks.homekeeping.model.company;
 
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class CompanyInfoModel {
     private HeadOffice headOffice;
     private Branch branch;
     private Company company;
     private BranchRepresentative representative;
-    private MetaData metaData;
+    private MetaData metadata;
 
     public CompanyInfoModel() {}
 
@@ -18,11 +18,11 @@ public class CompanyInfoModel {
         this.representative = representative;
     }
 
-    public CompanyInfoModel(Branch branch, Company company, BranchRepresentative representative, MetaData metaData) {
+    public CompanyInfoModel(Branch branch, Company company, BranchRepresentative representative, MetaData metadata) {
         this.branch = branch;
         this.company = company;
         this.representative = representative;
-        this.metaData = metaData;
+        this.metadata = metadata;
     }
 
     public HeadOffice getHeadOffice() {
@@ -57,12 +57,24 @@ public class CompanyInfoModel {
         this.representative = representative;
     }
 
-    public MetaData getMetaData() {
-        return metaData;
+    public MetaData getMetadata() {
+        return metadata;
     }
 
-    public void setMetaData(MetaData metaData) {
-        this.metaData = metaData;
+    public void setMetadata(MetaData metadata) {
+        this.metadata = metadata;
+    }
+
+    //todo remove this in production
+    @NotNull
+    @Override
+    public String toString() {
+        return "CompanyInfoModel{" +
+                ", branch=" + branch.toString() +
+                ", company=" + company.toString() +
+                ", representative=" + representative.toString() +
+                ", metadata=" + metadata.toString() +
+                '}';
     }
 }
 

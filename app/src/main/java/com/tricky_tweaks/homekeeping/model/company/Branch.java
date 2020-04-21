@@ -1,5 +1,7 @@
 package com.tricky_tweaks.homekeeping.model.company;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Branch {
     private String branchName;
     private String branchCode;
@@ -75,5 +77,20 @@ public class Branch {
 
     public void setBranchAreaCode(String branchAreaCode) {
         this.branchAreaCode = branchAreaCode;
+    }
+
+    //todo remove this in production
+    @NotNull
+    @Override
+    public String toString() {
+        return "Branch{" +
+                "branchName='" + branchName + '\'' +
+                ", branchCode='" + branchCode + '\'' +
+                ", branchEmail='" + branchEmail + '\'' +
+                ", branchCity='" + branchCity + '\'' +
+                ", branchState='" + branchState + '\'' +
+                ", branchLocation='" + branchLocation + '\'' +
+                ", branchAreaCode='" + branchAreaCode + '\'' +
+                '}';
     }
 }

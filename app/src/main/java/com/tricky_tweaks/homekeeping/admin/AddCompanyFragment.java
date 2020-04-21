@@ -203,6 +203,7 @@ public class AddCompanyFragment extends Fragment {
 
         MetaData metadata = new MetaData(
                 new SimpleDateFormat("dd : MM : YYYY").format(new Date()),
+                key,
                 serviceSelectedList
         );
 

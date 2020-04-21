@@ -7,11 +7,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.chip.ChipGroup;
 import com.tricky_tweaks.homekeeping.databinding.CardViewCompanyInfoBinding;
 import com.tricky_tweaks.homekeeping.model.company.Branch;
+import com.tricky_tweaks.homekeeping.model.company.Company;
 import com.tricky_tweaks.homekeeping.model.company.CompanyInfoModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CompanyInfoRecyclerAdapter extends RecyclerView.Adapter<CompanyInfoRecyclerAdapter.ViewHolder> {
 
@@ -33,12 +36,14 @@ public class CompanyInfoRecyclerAdapter extends RecyclerView.Adapter<CompanyInfo
                         false
                 );
 
-        return new ViewHolder(binding);
+        return new ViewHolder(binding, context);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.setBinding(list.get(position).getBranch());
+        holder.setBinding(list.get(position).getBranch(),
+                          list.get(position).getCompany(),
+                new ArrayList<>(list.get(position).getMetadata().getServices().values()));
 //        Log.e("adapter", list.get(position).getBranch().getBranchName());
     }
 
@@ -50,15 +55,21 @@ public class CompanyInfoRecyclerAdapter extends RecyclerView.Adapter<CompanyInfo
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         CardViewCompanyInfoBinding binding;
+        ChipGroup group;
+        Context context;
 
-        public ViewHolder(@NonNull CardViewCompanyInfoBinding itemView) {
+        public ViewHolder(@NonNull CardViewCompanyInfoBinding itemView, Context context) {
             super(itemView.getRoot());
             binding = itemView;
+            group = itemView.chipGroup;
+            this.context = context;
         }
 
-        void setBinding(Branch model) {
-        binding.setBranch(model);
-        binding.executePendingBindings();
+        void setBinding(Branch model, Company company, List<String> chipItems) {
+            binding.setBranch(model);
+            binding.setCompany(company);
+            binding.setChipItems(chipItems);
+            binding.executePendingBindings();
         }
     }
 }

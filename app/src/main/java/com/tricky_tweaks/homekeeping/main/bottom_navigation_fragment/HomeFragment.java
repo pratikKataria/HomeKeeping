@@ -30,7 +30,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
+        Navigation.findNavController(getActivity(), R.id.activity_main_nav_host).navigate(R.id.action_homeFragment_to_viewCompaniesFragment);
         MaterialButton _applyAsVendorBtn = view.findViewById(R.id.fragment_home_mb_vendor);
         _applyAsVendorBtn.setOnClickListener( n -> controller.navigate(R.id.action_homeFragment_to_vendorCategory));
         return view;

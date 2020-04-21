@@ -49,9 +49,9 @@
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingTop="32dp"
             android:background="@drawable/bg_navigation"
             android:backgroundTint="@color/white"
-            android:padding="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:branchList="@{branch}"/>
     </LinearLayout>

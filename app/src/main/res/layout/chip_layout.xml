@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Air conditioner repair"
+    app:chipStrokeColor="#E4D2FC"
+    app:chipStrokeWidth="1dp"
+    app:chipCornerRadius="4dp"
+    android:textColor="#6600EB"
+    android:enabled="false"
+    app:chipBackgroundColor="@color/white"
+    style="@style/ChipStyle">
+
+</com.google.android.material.chip.Chip>

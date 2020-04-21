@@ -46,4 +46,15 @@ public class BranchRepresentative {
     public void setRepresentativePosition(String representativePosition) {
         this.representativePosition = representativePosition;
     }
+
+    //todo remove this in production
+    @Override
+    public String toString() {
+        return "BranchRepresentative{" +
+                "representativeName='" + representativeName + '\'' +
+                ", representativePhone='" + representativePhone + '\'' +
+                ", representativeEmail='" + representativeEmail + '\'' +
+                ", representativePosition='" + representativePosition + '\'' +
+                '}';
+    }
 }

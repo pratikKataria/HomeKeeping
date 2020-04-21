@@ -1,24 +1,28 @@
 package com.tricky_tweaks.homekeeping.admin;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.tricky_tweaks.homekeeping.R;
 import com.tricky_tweaks.homekeeping.databinding.FragmentViewCompaniesBinding;
 import com.tricky_tweaks.homekeeping.model.company.CompanyInfoModel;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -28,12 +32,19 @@ import java.util.List;
 public class ViewCompaniesFragment extends Fragment {
 
     private FragmentViewCompaniesBinding binding;
+    private DatabaseReference reference;
+    private ChildEventListener childEventListener;
     private List<CompanyInfoModel> list;
 
     public ViewCompaniesFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.e("ViewCompaniesFragment", "onStart");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,27 +55,62 @@ public class ViewCompaniesFragment extends Fragment {
                 container,
                 false
         );
+        Log.e("ViewCompaniesFragment", "onCreate");
 
         list = new ArrayList<>();
         binding.setBranch(list);
+        reference = FirebaseDatabase.getInstance().getReference("Companies");
         populateList();
 
         return binding.getRoot();
     }
 
     public void populateList() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("CompanyInfo");
-        reference.addValueEventListener(new ValueEventListener() {
+        Log.e("ViewCompaniesFragment", "popu");
+
+        childEventListener = reference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    CompanyInfoModel companyInfoModel = snapshot.getValue(CompanyInfoModel.class);
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Log.e("ViewCompaniesFragment", "onChildAdded");
+                CompanyInfoModel companyInfoModel = dataSnapshot.getValue(CompanyInfoModel.class);
                     if (companyInfoModel != null) {
                         list.add(companyInfoModel);
-                        if (binding.recyclerview.getAdapter() != null)
+
+                        if (binding.recyclerview.getAdapter() != null) {
                             binding.recyclerview.getAdapter().notifyDataSetChanged();
+                            Toast.makeText(getActivity(), "data loading completed ", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Log.e("ViewCompaniesFragment", "onChildChanged");
+                Iterator<CompanyInfoModel> companyInfoModelIterator = list.iterator();
+                while (companyInfoModelIterator.hasNext()) {
+                    CompanyInfoModel infoModel = companyInfoModelIterator.next();
+                    if (infoModel != null && infoModel.getMetadata().getDatabaseRefKey().equals(dataSnapshot.getKey())) {
+                        companyInfoModelIterator.remove();
+                        CompanyInfoModel newData = dataSnapshot.getValue(CompanyInfoModel.class);
+                        if (newData != null)
+                            list.add(newData);
+                        if (binding.recyclerview.getAdapter() != null) {
+                            binding.recyclerview.getAdapter().notifyDataSetChanged();
+                            Toast.makeText(getActivity(), "updating... ", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
             }
 
             @Override
@@ -74,4 +120,17 @@ public class ViewCompaniesFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (childEventListener != null) reference.removeEventListener(childEventListener);
+        Log.e("ViewCompaniesFragment", "onPause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (childEventListener != null) reference.removeEventListener(childEventListener);
+        Log.e("ViewCompaniesFragment", "onStop");
+    }
 }
