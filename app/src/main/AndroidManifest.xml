@@ -11,19 +11,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat"/>
-        <activity android:name=".login.activity.CustomerProfileInfoActivity"/>
-        <activity android:name=".login.activity.SplashActivity">
-
+            android:theme="@style/Base.Theme.AppCompat">
         </activity>
-        <activity android:name=".login.activity.OtpActivity" />
-        <activity android:name=".login.activity.LoginActivity" />
-        <activity android:name=".main.MainActivity" >
+        <activity
+            android:name=".login.activity.CustomerProfileInfoActivity"
+            android:theme="@style/UserProfile">
+
+    </activity>
+        <activity android:name=".login.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".login.activity.OtpActivity" />
+        <activity android:name=".login.activity.LoginActivity" />
+        <activity android:name=".main.MainActivity" >
+
         </activity>
     </application>
 

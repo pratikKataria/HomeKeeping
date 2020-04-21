@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -26,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var timer: CountDownTimer
     private lateinit var mCallBacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
-    private lateinit var phoneNumber : EditText
+    private lateinit var phoneNumber : TextInputEditText
     private lateinit var countryCode : EditText
     private lateinit var progressBar: ProgressBar
     private lateinit var countDownTimer: TextView
@@ -60,13 +61,13 @@ class LoginActivity : AppCompatActivity() {
 
         sendOtpButton.setOnClickListener {
 
-            if (phoneNumber.text.isEmpty()) {
+            if (phoneNumber.text!!.isEmpty()) {
                 phoneNumber.error = "should not be empty"
                 phoneNumber.requestFocus()
                 return@setOnClickListener
             }
 
-            if (phoneNumber.text.length < 10) {
+            if (phoneNumber.text!!.length < 10) {
                 phoneNumber.error = "invalid number"
                 phoneNumber.requestFocus()
                 return@setOnClickListener
@@ -152,7 +153,7 @@ class LoginActivity : AppCompatActivity() {
                         otpIntent.putExtra("AuthCredentials", verificationId)
                         startActivity(otpIntent)
 
-                    }, 3000
+                    }, 2000
                 )
 
                 Toast.makeText(this@LoginActivity, "otp sent", Toast.LENGTH_SHORT).show()

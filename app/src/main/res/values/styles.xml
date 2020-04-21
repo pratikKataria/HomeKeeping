@@ -11,6 +11,11 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <style name="UserProfile" parent="AppTheme">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
     <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/colorBlack</item>
         <item name="android:textColorPrimary">@color/colorBlack</item>

@@ -113,17 +113,24 @@
                 android:background="@drawable/bg_round_rect"
                 android:text="+91" />
 
-            <EditText
-                android:id="@+id/activity_login_et_phone_number"
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/bg_round_rect"
-                android:padding="12dp"
-                android:textColor="@color/colorPrimary"
-                android:hint="Your Phone Number"
-                android:inputType="number"
-                android:maxLength="10" />
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/activity_login_et_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:textColor="@color/colorBlack"
+                    android:hint="Your Phone Number"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -132,9 +139,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:padding="16dp"
-            android:text="Generate OTP"
-            android:textAllCaps="false"
             app:cornerRadius="8dp"
+            android:textAllCaps="false"
+            android:text="Generate OTP"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
