@@ -78,6 +78,8 @@ public class AddCompanyFragment extends Fragment {
                 false
         );
 
+        binding.setActivity(getActivity());
+
         //company
         _textViewCompName = binding.addCompName;
         _textViewCompEmail = binding.addCompEmail;

@@ -1,71 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
 
+        <variable
+            name="activity"
+            type="android.app.Activity" />
 
-    <LinearLayout
+    </data>
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/lightWeightGrey"
-        tools:context=".admin.MultipleServiceFragment"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp">
-
-            <ImageButton
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:src="@drawable/ic_back_btn"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:background="?attr/selectableItemBackgroundBorderless"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Applications"
-                android:textSize="24dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_marginEnd="34dp"
-                android:textColor="@color/colorBlack"/>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@drawable/bg_navigation">
-
+            android:background="@color/lightWeightGrey"
+            tools:context=".admin.MultipleServiceFragment"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="200dp"
-                android:layout_margin="8dp"
-                android:padding="16dp"
-                android:orientation="vertical">
+                android:layout_marginTop="32dp">
+
+                <ImageButton
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:src="@drawable/ic_back_btn"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:onClick="@{() -> activity.onBackPressed()}"
+                    android:background="?attr/selectableItemBackgroundBorderless"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Applications"
+                    android:textSize="24dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginEnd="34dp"
+                    android:textColor="@color/colorBlack"/>
             </LinearLayout>
 
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/nextBtn"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                app:cornerRadius="8dp"
-                android:text="next"/>
+                android:orientation="vertical"
+                android:background="@drawable/bg_navigation">
 
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="200dp"
+                    android:layout_margin="8dp"
+                    android:padding="16dp"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/nextBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:cornerRadius="8dp"
+                    android:text="next"/>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
-</ScrollView>
+</layout>

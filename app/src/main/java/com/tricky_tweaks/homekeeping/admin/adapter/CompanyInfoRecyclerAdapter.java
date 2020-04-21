@@ -36,7 +36,7 @@ public class CompanyInfoRecyclerAdapter extends RecyclerView.Adapter<CompanyInfo
                         false
                 );
 
-        return new ViewHolder(binding, context);
+        return new ViewHolder(binding);
     }
 
     @Override
@@ -56,13 +56,11 @@ public class CompanyInfoRecyclerAdapter extends RecyclerView.Adapter<CompanyInfo
 
         CardViewCompanyInfoBinding binding;
         ChipGroup group;
-        Context context;
 
-        public ViewHolder(@NonNull CardViewCompanyInfoBinding itemView, Context context) {
+        public ViewHolder(@NonNull CardViewCompanyInfoBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;
             group = itemView.chipGroup;
-            this.context = context;
         }
 
         void setBinding(Branch model, Company company, List<String> chipItems) {

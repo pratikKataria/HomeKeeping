@@ -59,6 +59,7 @@ public class ViewCompaniesFragment extends Fragment {
 
         list = new ArrayList<>();
         binding.setBranch(list);
+        binding.setActivity(getActivity());
         reference = FirebaseDatabase.getInstance().getReference("Companies");
         populateList();
 
@@ -78,7 +79,7 @@ public class ViewCompaniesFragment extends Fragment {
 
                         if (binding.recyclerview.getAdapter() != null) {
                             binding.recyclerview.getAdapter().notifyDataSetChanged();
-                            Toast.makeText(getActivity(), "data loading completed ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "loading... ", Toast.LENGTH_SHORT).show();
                         }
                     }
             }

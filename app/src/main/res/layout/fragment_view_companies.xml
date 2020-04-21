@@ -13,6 +13,10 @@
             name="branch"
             type="List&lt;CompanyInfoModel>"/>
 
+        <variable
+            name="activity"
+            type="android.app.Activity" />
+
     </data>
 
     <LinearLayout
@@ -33,6 +37,7 @@
                 android:src="@drawable/ic_back_btn"
                 android:layout_gravity="center"
                 android:clickable="true"
+                android:onClick="@{() -> activity.onBackPressed()}"
                 android:background="?attr/selectableItemBackgroundBorderless"/>
             <TextView
                 android:layout_width="wrap_content"

@@ -40,6 +40,7 @@ public class AppliedVendorsFragment extends Fragment implements IVendorApplicati
                 container,
                 false
         );
+        binding.setActivity(getActivity());
 
         View view = binding.getRoot();
 

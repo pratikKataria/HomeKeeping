@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.CompoundButtonCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -19,6 +20,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.button.MaterialButton;
 import com.tricky_tweaks.homekeeping.R;
+import com.tricky_tweaks.homekeeping.databinding.FragmentMultipleServiceBinding;
 
 import java.util.ArrayList;
 
@@ -37,7 +39,14 @@ public class MultipleServiceFragment extends Fragment implements View.OnClickLis
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_multiple_service, container, false);
+        FragmentMultipleServiceBinding binding = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_multiple_service,
+                container,
+                false);
+        binding.setActivity(getActivity());
+
+        View view = binding.getRoot();
+
 
         checkedItemList = new ArrayList<>();
         LinearLayout linearLayout = view.findViewById(R.id.linearLayout);
