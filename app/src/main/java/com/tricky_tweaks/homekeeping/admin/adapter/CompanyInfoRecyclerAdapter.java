@@ -5,12 +5,15 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.chip.ChipGroup;
+import com.tricky_tweaks.homekeeping.R;
+import com.tricky_tweaks.homekeeping.admin.ViewCompaniesFragment;
 import com.tricky_tweaks.homekeeping.databinding.CardViewCompanyInfoBinding;
-import com.tricky_tweaks.homekeeping.model.company.Branch;
-import com.tricky_tweaks.homekeeping.model.company.Company;
 import com.tricky_tweaks.homekeeping.model.company.CompanyInfoModel;
 
 import java.util.ArrayList;
@@ -41,9 +44,12 @@ public class CompanyInfoRecyclerAdapter extends RecyclerView.Adapter<CompanyInfo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.setBinding(list.get(position).getBranch(),
-                          list.get(position).getCompany(),
+        holder.setBinding(list.get(position),
                 new ArrayList<>(list.get(position).getMetadata().getServices().values()));
+        NavHostFragment navHostFragment = (NavHostFragment) ((AppCompatActivity) context).getSupportFragmentManager().findFragmentById(R.id.activity_main_nav_host);
+        Fragment currFragment = navHostFragment.getChildFragmentManager().getFragments().get(0);
+
+        holder.binding.setICompanyApplication((ViewCompaniesFragment) currFragment);
 //        Log.e("adapter", list.get(position).getBranch().getBranchName());
     }
 
@@ -63,9 +69,8 @@ public class CompanyInfoRecyclerAdapter extends RecyclerView.Adapter<CompanyInfo
             group = itemView.chipGroup;
         }
 
-        void setBinding(Branch model, Company company, List<String> chipItems) {
-            binding.setBranch(model);
-            binding.setCompany(company);
+        void setBinding(CompanyInfoModel companyInfo, List<String> chipItems) {
+            binding.setCompanyInfo(companyInfo);
             binding.setChipItems(chipItems);
             binding.executePendingBindings();
         }

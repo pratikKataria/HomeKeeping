@@ -52,6 +52,7 @@ public class AppliedVendorsFragment extends Fragment implements IVendorApplicati
     }
 
     private void populateList() {
+        //todo remove listener on stop
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("VendorApplications");
 
         Query query = reference.limitToLast(10);

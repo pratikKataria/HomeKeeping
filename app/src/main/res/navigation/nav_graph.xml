@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_viewCompaniesFragment"
             app:destination="@id/viewCompaniesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_hireVendors"
+            app:destination="@id/hireVendors" />
     </fragment>
     <fragment
         android:id="@+id/vendorFragment"
@@ -198,9 +201,6 @@
         <argument
             android:name="dataModel"
             app:argType="com.tricky_tweaks.homekeeping.model.VendorDataModel" />
-        <action
-            android:id="@+id/action_viewApplicationFragment_to_viewCompaniesFragment"
-            app:destination="@id/viewCompaniesFragment" />
     </fragment>
     <fragment
         android:id="@+id/addCompanyFragment"
@@ -212,7 +212,11 @@
         android:id="@+id/viewCompaniesFragment"
         android:name="com.tricky_tweaks.homekeeping.admin.ViewCompaniesFragment"
         android:label="fragment_view_companies"
-        tools:layout="@layout/fragment_view_companies" />
+        tools:layout="@layout/fragment_view_companies" >
+        <action
+            android:id="@+id/action_viewCompaniesFragment_to_hireVendors"
+            app:destination="@id/hireVendors" />
+    </fragment>
     <fragment
         android:id="@+id/multipleServiceFragment"
         android:name="com.tricky_tweaks.homekeeping.admin.MultipleServiceFragment"
@@ -226,6 +230,11 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />
     </fragment>
+    <fragment
+        android:id="@+id/hireVendors"
+        android:name="com.tricky_tweaks.homekeeping.HireVendorsFragment"
+        android:label="fragment_hire_vendors"
+        tools:layout="@layout/fragment_hire_vendors" />
 
 
 </navigation>

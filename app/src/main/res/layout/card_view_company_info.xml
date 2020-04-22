@@ -4,29 +4,28 @@
 
     <data>
 
-        <import type="com.tricky_tweaks.homekeeping.model.company.Branch"/>
-        <import type="com.tricky_tweaks.homekeeping.model.company.Company"/>
         <import type="com.tricky_tweaks.homekeeping.utils.StringUtils"/>
         <import type="java.util.List"/>
 
-        <variable
-            name="branch"
-            type="com.tricky_tweaks.homekeeping.model.company.Branch" />
-
-        <variable
-            name="company"
-            type="Company" />
 
         <variable
             name="chipItems"
             type="List&lt;String>" />
 
+        <variable
+            name="iCompanyApplication"
+            type="com.tricky_tweaks.homekeeping.binding.ICompanyApplication" />
+
+        <variable
+            name="companyInfo"
+            type="com.tricky_tweaks.homekeeping.model.company.CompanyInfoModel" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:onClick="@{() -> iCompanyApplication.inflateViewHire(companyInfo)}"
         app:cardElevation="0dp">
 
         <LinearLayout
@@ -38,14 +37,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="company:"
+                android:text="companyInfo.company:"
                 android:textSize="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="comp name"
-                android:text="@{StringUtils.toTitleCase(company.companyName)}"
+                android:text="@{StringUtils.toTitleCase(companyInfo.company.companyName)}"
                 android:textColor="@color/colorBlack"
                 android:textStyle="bold"
                 android:textSize="18dp"/>
@@ -54,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="comp name"
-                android:text="@{company.companyEmail.toLowerCase()}"
+                android:text="@{companyInfo.company.companyEmail.toLowerCase()}"
                 android:textColor="@color/colorBlack"
                 android:textSize="12dp"/>
 
@@ -70,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:hint="branch name"
                 android:textStyle="bold"
-                android:text="@{StringUtils.toTitleCase(branch.branchName)}"
+                android:text="@{StringUtils.toTitleCase(companyInfo.branch.branchName)}"
                 android:textColor="@color/colorBlack"
                 android:textSize="18dp"/>
 
@@ -78,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="branch email"
-                android:text="@{StringUtils.toTitleCase(branch.branchEmail)}"
+                android:text="@{StringUtils.toTitleCase(companyInfo.branch.branchEmail)}"
                 android:textColor="@color/colorBlack"
                 android:textSize="12dp"/>
 
@@ -87,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Dushra Maidan Barwaha"
                 android:layout_marginTop="8dp"
-                android:text="@{StringUtils.toTitleCase(branch.branchLocation)}"
+                android:text="@{StringUtils.toTitleCase(companyInfo.branch.branchLocation)}"
                 android:textColor="@color/colorBlack"
                 android:textSize="12dp"/>
 
@@ -95,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="b area code"
-                android:text="@{branch.branchAreaCode}"
+                android:text="@{companyInfo.branch.branchAreaCode}"
                 android:textColor="@color/colorBlack"
                 android:textSize="12dp"/>
 
@@ -103,7 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="b city"
-                android:text="@{StringUtils.toTitleCase(branch.branchCity)}"
+                android:text="@{StringUtils.toTitleCase(companyInfo.branch.branchCity)}"
                 android:textColor="@color/colorBlack"
                 android:textSize="12dp"/>
 
@@ -111,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="b state"
-                android:text="@{StringUtils.toTitleCase(branch.branchState)}"
+                android:text="@{StringUtils.toTitleCase(companyInfo.branch.branchState)}"
                 android:textColor="@color/colorBlack"
                 android:textSize="12dp"/>
 

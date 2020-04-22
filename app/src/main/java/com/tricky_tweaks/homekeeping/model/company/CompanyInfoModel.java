@@ -2,7 +2,9 @@ package com.tricky_tweaks.homekeeping.model.company;
 
 import org.jetbrains.annotations.NotNull;
 
-public class CompanyInfoModel {
+import java.io.Serializable;
+
+public class CompanyInfoModel implements Serializable {
     private HeadOffice headOffice;
     private Branch branch;
     private Company company;

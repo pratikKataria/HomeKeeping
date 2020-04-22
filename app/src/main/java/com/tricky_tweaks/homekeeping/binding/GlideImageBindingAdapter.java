@@ -1,4 +1,4 @@
-package com.tricky_tweaks.homekeeping.admin.adapter;
+package com.tricky_tweaks.homekeeping.binding;
 
 import android.content.Context;
 import android.widget.ImageView;

@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.tricky_tweaks.homekeeping.R;
+import com.tricky_tweaks.homekeeping.binding.ICompanyApplication;
 import com.tricky_tweaks.homekeeping.databinding.FragmentViewCompaniesBinding;
 import com.tricky_tweaks.homekeeping.model.company.CompanyInfoModel;
 
@@ -29,7 +32,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ViewCompaniesFragment extends Fragment {
+public class ViewCompaniesFragment extends Fragment implements ICompanyApplication {
 
     private FragmentViewCompaniesBinding binding;
     private DatabaseReference reference;
@@ -133,5 +136,18 @@ public class ViewCompaniesFragment extends Fragment {
         super.onStop();
         if (childEventListener != null) reference.removeEventListener(childEventListener);
         Log.e("ViewCompaniesFragment", "onStop");
+    }
+
+    @Override
+    public void inflateViewHire(CompanyInfoModel companyInfoModel) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(
+                "COMPANY_INFO_MODEL",
+                companyInfoModel
+        );
+
+        Navigation.findNavController(getActivity(), R.id.activity_main_nav_host)
+                .navigate(R.id.action_viewCompaniesFragment_to_hireVendors, bundle);
+
     }
 }
