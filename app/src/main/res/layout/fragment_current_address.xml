@@ -2,6 +2,7 @@
 <ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".main.vendor_details_fragment.CurrentAddressFragment"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -75,12 +76,16 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp">
+            app:counterEnabled="true"
+            app:counterMaxLength="6">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/add_area_pincode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/CustomTextInputLayout"
+                android:maxLength="6"
+                android:inputType="number"
                 android:hint="Area Pincode" />
         </com.google.android.material.textfield.TextInputLayout>
 

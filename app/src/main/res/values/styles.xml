@@ -11,6 +11,12 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <style name="CustomTextInputLayout">
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="textColor">@color/colorBlack</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
     <style name="UserProfile" parent="AppTheme">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>

@@ -44,7 +44,7 @@
                 android:id="@+id/first_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="First Name" />
+                android:hint="First Name*" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:hint="Last Name" />
+                android:hint="Last Name*" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,7 +84,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/first_name_layout">
@@ -94,9 +94,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:hint="Address" />
+                android:hint="Address*" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <ProgressBar
             android:id="@+id/progressBar"

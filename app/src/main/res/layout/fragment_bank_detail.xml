@@ -71,6 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Bank Account number "
+                android:inputType="number"
                 android:longClickable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,6 +84,7 @@
                 android:id="@+id/bank_detail_confirm_account_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:hint="Confirm Bank Account number " />
         </com.google.android.material.textfield.TextInputLayout>
 

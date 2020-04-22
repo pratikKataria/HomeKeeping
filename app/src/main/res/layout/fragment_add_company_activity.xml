@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -72,7 +73,7 @@
                         android:id="@+id/add_comp_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        style="@style/CustomTextInputLayout"
                         android:hint="Company Name" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -85,7 +86,8 @@
                         android:id="@+id/add_comp_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        style="@style/CustomTextInputLayout"
+                        android:inputType="textEmailAddress"
                         android:hint="Company Email" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -106,7 +108,7 @@
                         android:id="@+id/add_branch_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        style="@style/CustomTextInputLayout"
                         android:hint="Branch Name" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -119,80 +121,86 @@
                         android:id="@+id/add_branch_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        style="@style/CustomTextInputLayout"
+                        android:inputType="textEmailAddress"
                         android:hint="Branch Email" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/add_street"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@style/CustomTextInputLayout"
                         android:hint="Address " />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    app:counterEnabled="true"
+                    app:counterMaxLength="6"
+                    style="@style/CustomTextInputLayout">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/add_area_pincode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLength="6"
+                        android:inputType="number"
                         android:hint="Area Pincode" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/add_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        style="@style/CustomTextInputLayout"
                         android:hint="Email" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/add_city"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@style/CustomTextInputLayout"
                         android:hint="city" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/add_location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@style/CustomTextInputLayout"
                         android:hint="location" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/add_state"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@style/CustomTextInputLayout"
                         android:hint="State" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -206,49 +214,54 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/add_rep_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@style/CustomTextInputLayout"
                         android:hint="Name" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    app:counterEnabled="true"
+                    app:counterMaxLength="10">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/add_rep_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@style/CustomTextInputLayout"
+                        android:maxLength="10"
+                        android:inputType="number"
                         android:hint="Phone Number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/add_rep_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@style/CustomTextInputLayout"
+                        android:inputType="textEmailAddress"
                         android:hint="Email" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/add_rep_position"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@style/CustomTextInputLayout"
                         android:hint="Position" />
                 </com.google.android.material.textfield.TextInputLayout>
 
